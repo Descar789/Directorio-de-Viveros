@@ -1,5 +1,5 @@
 import { crearClientePublico } from "./supabase/publico";
-import { esDestacado, type Vivero } from "./tipos";
+import { esDestacado, type Vivero, type Insignia } from "./tipos";
 
 export function rangoVivero(v: Vivero): number {
   if (esDestacado(v)) return 0;
@@ -33,6 +33,25 @@ export async function viverosCerca(lat: number, lng: number, radioKm = 25): Prom
   });
   if (error) throw error;
   return data ?? []; // ya viene ordenado del RPC
+}
+
+export async function insigniasPorVivero(
+  viveroIds: string[]
+): Promise<Record<string, Insignia[]>> {
+  if (viveroIds.length === 0) return {};
+  const supabase = crearClientePublico();
+  const { data, error } = await supabase
+    .from("vivero_insignias")
+    .select("vivero_id, insignias(*)")
+    .in("vivero_id", viveroIds);
+  if (error) throw error;
+  const mapa: Record<string, Insignia[]> = {};
+  for (const fila of data ?? []) {
+    const insignia = fila.insignias as unknown as Insignia | null;
+    if (!insignia) continue;
+    (mapa[fila.vivero_id] ??= []).push(insignia);
+  }
+  return mapa;
 }
 
 export async function buscarViveros(q: string, insignia?: string): Promise<Vivero[]> {
