@@ -6,6 +6,7 @@ import GaleriaFotos from "@/components/GaleriaFotos";
 import BotonContacto from "@/components/BotonContacto";
 import MapaViveros from "@/components/MapaViverosLazy";
 import InsigniaBadge from "@/components/InsigniaBadge";
+import AdSlot from "@/components/AdSlot";
 import { crearClientePublico } from "@/lib/supabase/publico";
 import { esDestacado, type Vivero, type Insignia } from "@/lib/tipos";
 
@@ -182,10 +183,7 @@ export default async function PaginaVivero({ params }: Props) {
               )}
             </div>
           )}
-          {/* Slot AdSense lateral (se llena en Task 11) */}
-          <div className="hidden lg:flex min-h-[250px] items-center justify-center text-xs text-muted border border-dashed border-border rounded-2xl">
-            Publicidad
-          </div>
+          <AdSlot slot="ficha-lateral" className="hidden lg:block" minAlto={250} />
         </aside>
       </div>
     </main>

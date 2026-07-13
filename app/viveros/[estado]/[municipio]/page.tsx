@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import ViveroCard from "@/components/ViveroCard";
+import AdSlot from "@/components/AdSlot";
 import MapaViveros from "@/components/MapaViverosLazy";
 import { viverosPorZona, insigniasPorVivero } from "@/lib/busqueda";
 import { slugAEstado, slugify, desSlug } from "@/lib/zonas";
@@ -72,6 +73,7 @@ export default async function PaginaMunicipio({ params }: Props) {
           <MapaViveros viveros={viveros} centro={centro} zoom={12} />
         </div>
       </div>
+      <AdSlot slot="zona-pie" className="mt-8" />
     </main>
   );
 }

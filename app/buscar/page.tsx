@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { SearchX } from "lucide-react";
 import ViveroCard from "@/components/ViveroCard";
+import AdSlot from "@/components/AdSlot";
 import Buscador from "@/components/Buscador";
 import InsigniaBadge from "@/components/InsigniaBadge";
 import { buscarViveros, viverosCerca, insigniasPorVivero } from "@/lib/busqueda";
@@ -85,10 +86,7 @@ export default async function PaginaBuscar({ searchParams }: Props) {
             <ViveroCard key={v.id} vivero={v} insignias={insigniasMapa[v.id] ?? []} />
           ))}
           {viveros.length > 4 && (
-            // Slot AdSense entre resultados 4 y 5 (se llena en Task 11)
-            <div className="sm:col-span-2 lg:col-span-3 min-h-[100px] flex items-center justify-center text-xs text-muted border border-dashed border-border rounded-2xl">
-              Publicidad
-            </div>
+            <AdSlot slot="buscar-intermedio" className="sm:col-span-2 lg:col-span-3" />
           )}
           {viveros.slice(4).map((v) => (
             <ViveroCard key={v.id} vivero={v} insignias={insigniasMapa[v.id] ?? []} />

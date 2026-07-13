@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { MapPin } from "lucide-react";
 import ViveroCard from "@/components/ViveroCard";
+import AdSlot from "@/components/AdSlot";
 import MapaViveros from "@/components/MapaViverosLazy";
 import { viverosPorZona, insigniasPorVivero } from "@/lib/busqueda";
 import { slugAEstado, slugify, desSlug } from "@/lib/zonas";
@@ -74,6 +75,7 @@ export default async function PaginaEstado({ params }: Props) {
           <MapaViveros viveros={viveros} centro={centro} zoom={9} />
         </div>
       </div>
+      <AdSlot slot="zona-pie" className="mt-8" />
     </main>
   );
 }

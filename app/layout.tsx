@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Open_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AvisoCookies from "@/components/AvisoCookies";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <AvisoCookies />
       </body>
     </html>
   );
