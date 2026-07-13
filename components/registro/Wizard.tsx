@@ -14,6 +14,7 @@ import {
   type DatosRegistro,
 } from "@/lib/registro";
 import type { Vivero } from "@/lib/tipos";
+import { track } from "@/lib/analytics";
 import PasoNombre from "./pasos/PasoNombre";
 import PasoUbicacion from "./pasos/PasoUbicacion";
 import PasoContacto from "./pasos/PasoContacto";
@@ -153,6 +154,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
       });
       if (errInsert) throw errInsert;
       limpiarBorrador();
+      track("registro_completado", { modo });
       setEnviado(true);
     } catch {
       setError("No pudimos enviar tu solicitud. Intenta de nuevo en un momento.");
@@ -193,7 +195,10 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
         <div className="grid sm:grid-cols-2 gap-4 mt-8 max-w-2xl mx-auto">
           <button
             type="button"
-            onClick={() => setModo("nuevo")}
+            onClick={() => {
+              track("registro_iniciado", { modo: "nuevo" });
+              setModo("nuevo");
+            }}
             className="bg-surface border border-border rounded-2xl p-6 text-left hover:border-primary transition-colors min-h-11"
           >
             <Store className="w-8 h-8 text-primary" aria-hidden />
@@ -204,7 +209,10 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
           </button>
           <button
             type="button"
-            onClick={() => setModo("reclamo")}
+            onClick={() => {
+              track("registro_iniciado", { modo: "reclamo" });
+              setModo("reclamo");
+            }}
             className="bg-surface border border-border rounded-2xl p-6 text-left hover:border-primary transition-colors min-h-11"
           >
             <Search className="w-8 h-8 text-primary" aria-hidden />

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { MessageCircle, Phone, Navigation } from "lucide-react";
 import type { Vivero } from "@/lib/tipos";
+import { track } from "@/lib/analytics";
 
 function mandarMetrica(viveroId: string, metrica: string) {
   try {
@@ -35,7 +36,10 @@ export default function BotonContacto({ vivero }: { vivero: Vivero }) {
           href={`https://wa.me/${vivero.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => mandarMetrica(vivero.id, "clics_whatsapp")}
+          onClick={() => {
+            mandarMetrica(vivero.id, "clics_whatsapp");
+            track("clic_whatsapp", { vivero: vivero.slug });
+          }}
           className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-dark transition-colors"
         >
           <MessageCircle className="w-5 h-5" aria-hidden /> WhatsApp

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, LocateFixed } from "lucide-react";
+import { track } from "@/lib/analytics";
 
 export default function Buscador() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function Buscador() {
   function buscar(e: React.FormEvent) {
     e.preventDefault();
     const termino = [q, donde].filter(Boolean).join(" ").trim();
+    track("busqueda", { termino });
     router.push(termino ? `/buscar?q=${encodeURIComponent(termino)}` : "/buscar");
   }
 
@@ -27,6 +29,7 @@ export default function Buscador() {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         setUbicando(false);
+        track("busqueda", { termino: "cerca-de-mi" });
         router.push(`/buscar?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`);
       },
       () => {
