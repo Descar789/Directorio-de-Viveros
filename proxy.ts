@@ -23,7 +23,7 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const protegidas = ["/mi-vivero", "/admin"];
+  const protegidas = ["/mi-vivero", "/admin", "/registro"];
   if (!user && protegidas.some((p) => request.nextUrl.pathname.startsWith(p))) {
     const url = new URL("/entrar", request.url);
     url.searchParams.set("next", request.nextUrl.pathname);
