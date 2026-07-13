@@ -1,65 +1,110 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Check, Store } from "lucide-react";
+import Buscador from "@/components/Buscador";
+import MapaViveros from "@/components/MapaViverosLazy";
+import ViveroCard from "@/components/ViveroCard";
+import InsigniaBadge from "@/components/InsigniaBadge";
+import { crearClientePublico } from "@/lib/supabase/publico";
+import { ordenarViveros } from "@/lib/busqueda";
+import { esDestacado } from "@/lib/tipos";
+import type { Vivero, Insignia } from "@/lib/tipos";
 
-export default function Home() {
+export const revalidate = 3600;
+
+export default async function Home() {
+  const supabase = crearClientePublico();
+  const [{ data: viverosData }, { data: insigniasData }] = await Promise.all([
+    supabase
+      .from("viveros")
+      .select("*")
+      .in("estatus", ["verificado", "pre-cargado"])
+      .limit(200),
+    supabase.from("insignias").select("*").neq("clave", "verificado").order("id"),
+  ]);
+  const viveros = ordenarViveros((viverosData ?? []) as Vivero[]);
+  const insignias = (insigniasData ?? []) as Insignia[];
+  const destacados = viveros.filter(esDestacado).slice(0, 6);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="flex-1">
+      {/* Hero: buscador + mapa */}
+      <section className="max-w-6xl mx-auto px-4 py-10 lg:py-16 grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 className="font-heading text-3xl lg:text-5xl font-bold leading-tight">
+            Encuentra viveros <span className="text-primary">cerca de ti</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-muted mt-3 text-lg">
+            Plantas, árboles, suculentas y más — el directorio de viveros más completo de México.
           </p>
+          <div className="mt-6">
+            <Buscador />
+          </div>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-sm text-muted">
+            {["Directorio gratuito", "Viveros verificados", "Contacto directo por WhatsApp"].map((t) => (
+              <li key={t} className="inline-flex items-center gap-1.5">
+                <Check className="w-4 h-4 text-primary" aria-hidden /> {t}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="h-[420px]">
+          <MapaViveros viveros={viveros} />
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Categorías */}
+      {insignias.length > 0 && (
+        <section className="max-w-6xl mx-auto px-4 py-8" aria-labelledby="titulo-categorias">
+          <h2 id="titulo-categorias" className="font-heading text-2xl font-bold">
+            Explora por categoría
+          </h2>
+          <div className="flex flex-wrap gap-2 mt-4">
+            {insignias.map((i) => (
+              <Link
+                key={i.id}
+                href={`/buscar?insignia=${i.clave}`}
+                className="min-h-11 inline-flex items-center rounded-xl hover:opacity-80 transition-opacity"
+              >
+                <InsigniaBadge insignia={i} />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Destacados */}
+      {destacados.length > 0 && (
+        <section className="max-w-6xl mx-auto px-4 py-8" aria-labelledby="titulo-destacados">
+          <h2 id="titulo-destacados" className="font-heading text-2xl font-bold">
+            Viveros destacados
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {destacados.map((v) => (
+              <ViveroCard key={v.id} vivero={v} insignias={[]} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* CTA registro */}
+      <section className="bg-primary mt-8">
+        <div className="max-w-6xl mx-auto px-4 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="text-on-primary text-center sm:text-left">
+            <h2 className="font-heading text-2xl font-bold inline-flex items-center gap-2">
+              <Store className="w-6 h-6" aria-hidden /> ¿Tienes un vivero?
+            </h2>
+            <p className="mt-1 opacity-90">
+              Aparece en el directorio y recibe clientes por WhatsApp. Es gratis.
+            </p>
+          </div>
+          <Link
+            href="/registro"
+            className="min-h-11 inline-flex items-center bg-accent text-on-primary font-semibold px-6 rounded-xl hover:opacity-90 transition-opacity"
+          >
+            Registra tu vivero gratis
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

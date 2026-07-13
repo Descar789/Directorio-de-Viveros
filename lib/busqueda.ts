@@ -1,4 +1,4 @@
-import { crearClienteServer } from "./supabase/server";
+import { crearClientePublico } from "./supabase/publico";
 import { esDestacado, type Vivero } from "./tipos";
 
 export function rangoVivero(v: Vivero): number {
@@ -12,7 +12,7 @@ export function ordenarViveros(lista: Vivero[]): Vivero[] {
 }
 
 export async function viverosPorZona(estado: string, municipio?: string): Promise<Vivero[]> {
-  const supabase = await crearClienteServer();
+  const supabase = crearClientePublico();
   let q = supabase
     .from("viveros")
     .select("*")
@@ -25,7 +25,7 @@ export async function viverosPorZona(estado: string, municipio?: string): Promis
 }
 
 export async function viverosCerca(lat: number, lng: number, radioKm = 25): Promise<Vivero[]> {
-  const supabase = await crearClienteServer();
+  const supabase = crearClientePublico();
   const { data, error } = await supabase.rpc("buscar_cerca", {
     p_lat: lat,
     p_lng: lng,
@@ -36,7 +36,7 @@ export async function viverosCerca(lat: number, lng: number, radioKm = 25): Prom
 }
 
 export async function buscarViveros(q: string, insignia?: string): Promise<Vivero[]> {
-  const supabase = await crearClienteServer();
+  const supabase = crearClientePublico();
   let query = supabase
     .from("viveros")
     .select(insignia ? "*, vivero_insignias!inner(insignias!inner(clave))" : "*")
