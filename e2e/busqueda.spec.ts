@@ -4,6 +4,9 @@ test.describe("búsqueda y ficha", () => {
   test("home → buscar Cuautla → orden canónico → ficha con WhatsApp", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Encuentra viveros");
+    // El mapa Leaflet solo se monta en cliente: verlo garantiza que la página
+    // ya hidrató antes de interactuar con el buscador.
+    await expect(page.locator(".leaflet-container")).toBeVisible({ timeout: 15000 });
 
     await page.getByLabel("¿Dónde?").fill("Cuautla");
     await page.getByRole("button", { name: "Buscar" }).click();

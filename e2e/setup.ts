@@ -29,8 +29,14 @@ async function asegurarUsuario(
       password: PASSWORD_PRUEBA,
       email_confirm: true,
     });
-    if (error) throw error;
-    usuario = data.user;
+    if (error) {
+      // Carrera entre workers: otro spec lo creó primero — re-buscar.
+      const { data: relista } = await admin.auth.admin.listUsers();
+      usuario = relista?.users.find((u) => u.email === email);
+      if (!usuario) throw error;
+    } else {
+      usuario = data.user;
+    }
   }
   await admin.from("perfiles").upsert({ id: usuario!.id, rol }, { onConflict: "id" });
   return usuario!.id;

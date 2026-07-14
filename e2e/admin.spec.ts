@@ -15,6 +15,9 @@ test.describe("moderación admin", () => {
     const { duenoId } = await prepararUsuariosPrueba();
     const admin = clienteAdmin();
 
+    // Limpia viveros de corridas anteriores para no acumular datos de prueba
+    await admin.from("viveros").delete().like("nombre", "Vivero Admin E2E%");
+
     // Solicitud sintética independiente del spec de registro
     const nombre = `Vivero Admin E2E ${Date.now()}`;
     await admin.from("solicitudes").insert({

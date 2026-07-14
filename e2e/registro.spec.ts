@@ -32,8 +32,8 @@ test.describe("wizard de registro", () => {
     await page.getByRole("button", { name: "Continuar" }).click();
 
     // Paso 2: ubicación
-    await page.getByLabel("Estado").selectOption("Morelos");
-    await page.getByLabel("Municipio").fill("Cuautla");
+    await page.getByLabel("Estado", { exact: true }).selectOption("Morelos");
+    await page.getByLabel("Municipio", { exact: true }).fill("Cuautla");
     await page.getByRole("button", { name: "Continuar" }).click();
 
     // Paso 3: contacto
