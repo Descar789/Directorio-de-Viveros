@@ -24,6 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Viveros en ${datos.municipio}, ${datos.estado}`,
     description: `Directorio de viveros en ${datos.municipio}, ${datos.estado}: plantas, árboles, suculentas. Teléfono, WhatsApp, horarios y ubicación de ${datos.viveros.length} viveros.`,
+    // Municipios sin viveros son thin content: fuera del índice hasta que tengan fichas
+    robots: datos.viveros.length === 0 ? { index: false } : undefined,
   };
 }
 

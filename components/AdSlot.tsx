@@ -54,6 +54,10 @@ export default function AdSlot({
     }
   }, [activo]);
 
+  // Sin AdSense configurado no hay nada que mostrar: un hueco rotulado
+  // "Publicidad" hace ver el sitio inacabado.
+  if (!CLIENTE) return null;
+
   return (
     <div className={className} style={{ minHeight: minAlto }}>
       {activo ? (

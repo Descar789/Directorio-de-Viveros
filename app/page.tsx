@@ -46,7 +46,7 @@ export default async function Home() {
           </div>
           <div className="mt-6 bg-surface-soft rounded-xl px-4.5 py-3.5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
             <span className="font-semibold">
-              {viveros.length > 0 ? `${viveros.length} viveros verificados` : "Viveros verificados"}
+              {viveros.length >= 50 ? `${viveros.length} viveros verificados` : "Viveros verificados"}
             </span>
             <span className="hidden sm:block w-px h-4 bg-border-soft" aria-hidden />
             <span className="text-strong">

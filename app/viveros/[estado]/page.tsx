@@ -18,6 +18,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Viveros en ${nombre}`,
     description: `Directorio de viveros en ${nombre}: ${viveros.length} viveros con plantas, árboles y suculentas. Contacto directo por WhatsApp.`,
+    // Estados sin viveros son thin content: fuera del índice hasta que tengan fichas
+    robots: viveros.length === 0 ? { index: false } : undefined,
   };
 }
 
