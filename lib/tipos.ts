@@ -55,9 +55,9 @@ export interface Perfil {
 export function esDestacado(
   v: Pick<Vivero, "destacado_hasta" | "destacado_municipio" | "municipio">
 ): boolean {
-  return (
-    !!v.destacado_hasta &&
-    new Date(v.destacado_hasta) >= new Date(new Date().toDateString()) &&
-    v.destacado_municipio === v.municipio
-  );
+  if (!v.destacado_hasta || v.destacado_municipio !== v.municipio) return false;
+  // destacado_hasta es fecha YYYY-MM-DD (UTC); comparar como texto evita que
+  // "vence hoy" caduque antes de tiempo por el huso horario local.
+  const hoy = new Date().toISOString().slice(0, 10);
+  return v.destacado_hasta.slice(0, 10) >= hoy;
 }

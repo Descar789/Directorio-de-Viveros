@@ -36,7 +36,7 @@ export default async function PaginaEditar() {
       <Link href="/mi-vivero" className="min-h-11 inline-flex items-center gap-1 text-muted hover:text-primary">
         <ArrowLeft className="w-4 h-4" aria-hidden /> Mi vivero
       </Link>
-      <h1 className="font-heading text-3xl font-bold mt-2">Editar mi ficha</h1>
+      <h1 className="font-heading text-3xl font-medium mt-2">Editar mi ficha</h1>
       <div className="mt-6">
         <FormFicha vivero={vivero} especialidadesIniciales={especialidades} />
       </div>

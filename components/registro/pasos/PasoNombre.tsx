@@ -11,7 +11,7 @@ export default function PasoNombre({
 }) {
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold">¿Cómo se llama tu vivero?</h2>
+      <h2 className="font-heading text-[21px] font-semibold">¿Cómo se llama tu vivero?</h2>
       <p className="text-muted mt-1">Así aparecerá en el directorio.</p>
       <label className="sr-only" htmlFor="nombre-vivero">
         Nombre del vivero

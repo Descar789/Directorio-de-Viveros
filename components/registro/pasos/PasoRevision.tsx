@@ -44,7 +44,7 @@ export default function PasoRevision({
 }) {
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold">Revisa tu información</h2>
+      <h2 className="font-heading text-[21px] font-semibold">Revisa tu información</h2>
       <p className="text-muted mt-1">Puedes editar cualquier dato antes de enviar.</p>
 
       <div className="mt-6 bg-surface border border-border rounded-2xl px-4">

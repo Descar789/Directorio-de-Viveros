@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("búsqueda y ficha", () => {
   test("home → buscar Cuautla → orden canónico → ficha con WhatsApp", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Encuentra viveros");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText("Encuentra el vivero perfecto");
     // El mapa Leaflet solo se monta en cliente: verlo garantiza que la página
     // ya hidrató antes de interactuar con el buscador.
     await expect(page.locator(".leaflet-container")).toBeVisible({ timeout: 15000 });

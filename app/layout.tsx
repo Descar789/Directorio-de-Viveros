@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Poppins, Open_Sans } from "next/font/google";
+import { Newsreader, Work_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AvisoCookies from "@/components/AvisoCookies";
 import Analytics from "@/components/Analytics";
 import "./globals.css";
 
-const poppins = Poppins({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
+  style: ["normal", "italic"],
+  variable: "--font-newsreader",
 });
 
-const openSans = Open_Sans({
+const workSans = Work_Sans({
   subsets: ["latin"],
-  variable: "--font-open-sans",
+  variable: "--font-work-sans",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="es-MX"
-      className={`${poppins.variable} ${openSans.variable} h-full antialiased`}
+      className={`${newsreader.variable} ${workSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-body">
         <Header />

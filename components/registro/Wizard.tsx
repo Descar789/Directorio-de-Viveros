@@ -167,7 +167,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
     return (
       <div className="text-center py-16" role="status">
         <CheckCircle className="w-16 h-16 text-primary mx-auto" aria-hidden />
-        <h1 className="font-heading text-2xl font-bold mt-4">
+        <h1 className="font-heading text-2xl font-medium mt-4">
           Tu vivero está en revisión
         </h1>
         <p className="text-muted mt-2 max-w-md mx-auto">
@@ -188,8 +188,11 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
   if (modo === "elegir") {
     return (
       <div className="py-8">
-        <h1 className="font-heading text-3xl font-bold text-center">
-          Registra tu vivero gratis
+        <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-primary text-center">
+          Regístrate gratis
+        </p>
+        <h1 className="font-heading text-3xl lg:text-[34px] font-medium text-center mt-2">
+          Da de alta tu vivero en minutos
         </h1>
         <p className="text-muted text-center mt-2">¿Cuál es tu caso?</p>
         <div className="grid sm:grid-cols-2 gap-4 mt-8 max-w-2xl mx-auto">
@@ -242,7 +245,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
         >
           <ArrowLeft className="w-4 h-4" aria-hidden /> Volver
         </button>
-        <h1 className="font-heading text-2xl font-bold mt-4">Reclama tu ficha</h1>
+        <h1 className="font-heading text-2xl font-medium mt-4">Reclama tu ficha</h1>
 
         {!viveroReclamado ? (
           <>
@@ -349,44 +352,59 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
         </p>
       </div>
 
-      <div
-        role="progressbar"
-        aria-valuenow={paso}
-        aria-valuemin={1}
-        aria-valuemax={TOTAL_PASOS}
-        aria-label={`Paso ${paso} de ${TOTAL_PASOS}`}
-        className="mt-3 h-2 rounded-full bg-border overflow-hidden"
+      <ol
+        className="mt-6 flex items-center justify-center gap-2"
+        aria-label={`Paso ${paso} de ${TOTAL_PASOS}: ${TITULOS[paso]}`}
       >
-        <div
-          className="h-full bg-primary transition-all"
-          style={{ width: `${(paso / TOTAL_PASOS) * 100}%` }}
-        />
-      </div>
+        {Array.from({ length: TOTAL_PASOS }, (_, i) => i + 1).map((n) => (
+          <li key={n} className="flex items-center gap-2" aria-current={n === paso ? "step" : undefined}>
+            <span
+              className={`w-[34px] h-[34px] rounded-full inline-flex items-center justify-center text-[13.5px] font-bold border transition-colors ${
+                n <= paso
+                  ? "bg-primary text-on-primary border-primary"
+                  : "bg-surface text-muted-soft border-border"
+              }`}
+            >
+              {n}
+            </span>
+            <span
+              className={`hidden lg:inline text-[13.5px] font-semibold ${
+                n === paso ? "text-foreground" : "text-muted-soft"
+              }`}
+            >
+              {TITULOS[n]}
+            </span>
+            {n < TOTAL_PASOS && <span className="w-4 lg:w-6 h-px bg-border" aria-hidden />}
+          </li>
+        ))}
+      </ol>
 
-      <div className="mt-8">
+      <div className="mt-8 bg-surface border border-border rounded-[20px] p-6 sm:p-9">
         {paso === 1 && <PasoNombre datos={datos} onCambio={cambiar} />}
         {paso === 2 && <PasoUbicacion datos={datos} onCambio={cambiar} />}
         {paso === 3 && <PasoContacto datos={datos} onCambio={cambiar} />}
         {paso === 4 && <PasoEspecialidades datos={datos} onCambio={cambiar} />}
         {paso === 5 && <PasoFotos datos={datos} onCambio={cambiar} />}
         {paso === 6 && <PasoRevision datos={datos} onIr={setPaso} />}
+
+        {error && (
+          <p ref={refError} role="alert" tabIndex={-1} className="mt-4 text-sm text-destructive">
+            {error}
+          </p>
+        )}
+
+        <button
+          type="button"
+          onClick={paso < TOTAL_PASOS ? continuar : enviar}
+          disabled={enviando}
+          className={`mt-8 w-full min-h-12 inline-flex items-center justify-center gap-2 text-on-primary font-semibold rounded-[11px] transition-colors disabled:opacity-60 ${
+            paso < TOTAL_PASOS ? "bg-primary hover:bg-primary-dark" : "bg-accent hover:opacity-90"
+          }`}
+        >
+          {enviando && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
+          {paso < TOTAL_PASOS ? "Siguiente" : "Enviar solicitud"}
+        </button>
       </div>
-
-      {error && (
-        <p ref={refError} role="alert" tabIndex={-1} className="mt-4 text-sm text-destructive">
-          {error}
-        </p>
-      )}
-
-      <button
-        type="button"
-        onClick={paso < TOTAL_PASOS ? continuar : enviar}
-        disabled={enviando}
-        className="mt-8 w-full min-h-12 inline-flex items-center justify-center gap-2 bg-primary text-on-primary font-semibold rounded-xl hover:bg-primary-dark transition-colors disabled:opacity-60"
-      >
-        {enviando && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
-        {paso < TOTAL_PASOS ? "Continuar" : "Enviar mi vivero"}
-      </button>
     </div>
   );
 }

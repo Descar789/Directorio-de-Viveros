@@ -92,58 +92,91 @@ export default async function PaginaVivero({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <nav aria-label="Migas de pan" className="mb-5 text-sm text-muted-soft">
+        <Link href="/buscar" className="hover:text-primary">
+          Directorio
+        </Link>
+        {" / "}
+        <Link
+          href={`/buscar?q=${encodeURIComponent(vivero.estado)}`}
+          className="hover:text-primary"
+        >
+          {vivero.estado}
+        </Link>
+        {" / "}
+        <span className="text-foreground font-semibold">{vivero.nombre}</span>
+      </nav>
+
       {vivero.estatus === "pre-cargado" && (
-        <div className="bg-accent/10 border border-accent rounded-2xl px-4 py-3 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="bg-accent-soft border border-border rounded-2xl px-4 py-3 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-medium">¿Este vivero es tuyo? Reclámalo gratis y adminístralo.</p>
           <Link
             href={`/registro?reclamar=${vivero.slug}`}
-            className="min-h-11 inline-flex items-center bg-accent text-on-primary font-semibold px-4 rounded-xl shrink-0"
+            className="min-h-11 inline-flex items-center bg-primary text-on-primary font-semibold px-4 rounded-[10px] shrink-0"
           >
             Reclamar ficha
           </Link>
         </div>
       )}
 
-      <div className="grid lg:grid-cols-[1fr_340px] gap-8">
+      <div className="grid lg:grid-cols-[1fr_340px] gap-8 lg:gap-14">
         <div>
           <GaleriaFotos fotos={vivero.fotos} nombre={vivero.nombre} />
 
-          <div className="mt-6 flex flex-wrap items-center gap-2">
-            <h1 className="font-heading text-3xl font-bold">{vivero.nombre}</h1>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <h1 className="font-heading text-3xl lg:text-[34px] font-medium">{vivero.nombre}</h1>
+            {vivero.estatus === "verificado" && (
+              <span className="bg-plum-soft text-plum text-[12.5px] font-semibold px-2.5 py-1 rounded-lg inline-flex items-center gap-1">
+                Verificado
+              </span>
+            )}
             {destacado && (
-              <span className="bg-accent text-on-primary text-xs font-semibold px-2 py-1 rounded-lg inline-flex items-center gap-1">
-                <Star className="w-3 h-3" aria-hidden /> Destacado
+              <span className="bg-surface border border-border text-[11px] font-bold uppercase tracking-[0.04em] px-2.5 py-1 rounded-full inline-flex items-center gap-1">
+                <Star className="w-3 h-3 text-primary" aria-hidden /> Destacado
               </span>
             )}
           </div>
 
-          <p className="text-muted mt-1 inline-flex items-center gap-1">
+          <p className="text-muted mt-2.5 inline-flex items-center gap-1">
             <MapPin className="w-4 h-4" aria-hidden />
             {vivero.direccion ? `${vivero.direccion}, ` : ""}
             {vivero.municipio}, {vivero.estado}
           </p>
 
-          {insignias.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mt-3">
-              {insignias.map((i) => (
-                <InsigniaBadge key={i.id} insignia={i} />
-              ))}
-            </div>
-          )}
-
           {vivero.descripcion && (
-            <section className="mt-6" aria-labelledby="titulo-descripcion">
-              <h2 id="titulo-descripcion" className="font-heading text-xl font-semibold">
+            <section className="mt-7" aria-labelledby="titulo-descripcion">
+              <h2 id="titulo-descripcion" className="sr-only">
                 Acerca de este vivero
               </h2>
-              <p className="mt-2 whitespace-pre-line">{vivero.descripcion}</p>
+              <p className="whitespace-pre-line text-base leading-[1.7] text-strong">
+                {vivero.descripcion}
+              </p>
+            </section>
+          )}
+
+          {insignias.length > 0 && (
+            <section className="mt-8" aria-labelledby="titulo-servicios">
+              <h2
+                id="titulo-servicios"
+                className="text-[12.5px] font-bold uppercase tracking-[0.08em] text-muted-soft"
+              >
+                Productos y servicios
+              </h2>
+              <div className="flex flex-wrap gap-2 mt-3.5">
+                {insignias.map((i) => (
+                  <InsigniaBadge key={i.id} insignia={i} />
+                ))}
+              </div>
             </section>
           )}
 
           {horarios.length > 0 && (
-            <section className="mt-6" aria-labelledby="titulo-horarios">
-              <h2 id="titulo-horarios" className="font-heading text-xl font-semibold inline-flex items-center gap-2">
-                <Clock className="w-5 h-5 text-primary" aria-hidden /> Horarios
+            <section className="mt-8" aria-labelledby="titulo-horarios">
+              <h2
+                id="titulo-horarios"
+                className="text-[12.5px] font-bold uppercase tracking-[0.08em] text-muted-soft inline-flex items-center gap-2"
+              >
+                <Clock className="w-4 h-4 text-primary" aria-hidden /> Horarios
               </h2>
               <table className="mt-2 w-full max-w-sm text-sm">
                 <tbody>
@@ -160,8 +193,8 @@ export default async function PaginaVivero({ params }: Props) {
             </section>
           )}
 
-          <section className="mt-6" aria-label="Ubicación en mapa">
-            <div className="h-64">
+          <section className="mt-8" aria-label="Ubicación en mapa">
+            <div className="h-64 rounded-2xl overflow-hidden border border-border">
               <MapaViveros viveros={[vivero]} centro={[vivero.lat, vivero.lng]} zoom={15} />
             </div>
           </section>

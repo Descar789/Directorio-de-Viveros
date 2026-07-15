@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { Check, Store } from "lucide-react";
 import Buscador from "@/components/Buscador";
 import MapaViveros from "@/components/MapaViverosLazy";
 import ViveroCard from "@/components/ViveroCard";
-import InsigniaBadge from "@/components/InsigniaBadge";
+import { IconoInsignia } from "@/components/InsigniaBadge";
 import { crearClientePublico } from "@/lib/supabase/publico";
 import { ordenarViveros } from "@/lib/busqueda";
 import { esDestacado } from "@/lib/tipos";
@@ -24,48 +23,66 @@ export default async function Home() {
   const viveros = ordenarViveros((viverosData ?? []) as Vivero[]);
   const insignias = (insigniasData ?? []) as Insignia[];
   const destacados = viveros.filter(esDestacado).slice(0, 6);
+  const totalEstados = new Set(viveros.map((v) => v.estado)).size;
 
   return (
     <main className="flex-1">
       {/* Hero: buscador + mapa */}
-      <section className="max-w-6xl mx-auto px-4 py-10 lg:py-16 grid lg:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 className="font-heading text-3xl lg:text-5xl font-bold leading-tight">
-            Encuentra viveros <span className="text-primary">cerca de ti</span>
-          </h1>
-          <p className="text-muted mt-3 text-lg">
-            Plantas, árboles, suculentas y más — el directorio de viveros más completo de México.
+      <section className="max-w-6xl mx-auto px-4 pt-12 lg:pt-16 pb-7 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
+        <div className="animate-fade-up">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-primary">
+            Directorio nacional de viveros
           </p>
-          <div className="mt-6">
+          <h1 className="font-heading text-[42px] lg:text-[58px] leading-[1.04] font-medium mt-4">
+            Encuentra el vivero perfecto{" "}
+            <span className="italic text-plum">cerca de ti</span>
+          </h1>
+          <p className="text-muted mt-5 text-lg leading-relaxed max-w-[460px]">
+            Plantas, árboles frutales y suculentas de viveros verificados en todo
+            México. Contacta directo, sin intermediarios.
+          </p>
+          <div className="mt-8">
             <Buscador />
           </div>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-sm text-muted">
-            {["Directorio gratuito", "Viveros verificados", "Contacto directo por WhatsApp"].map((t) => (
-              <li key={t} className="inline-flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-primary" aria-hidden /> {t}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-6 bg-surface-soft rounded-xl px-4.5 py-3.5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+            <span className="font-semibold">
+              {viveros.length > 0 ? `${viveros.length} viveros verificados` : "Viveros verificados"}
+            </span>
+            <span className="hidden sm:block w-px h-4 bg-border-soft" aria-hidden />
+            <span className="text-strong">
+              {totalEstados > 0
+                ? `${totalEstados} ${totalEstados === 1 ? "estado" : "estados"}`
+                : "Todo México"}
+            </span>
+            <span className="hidden sm:block w-px h-4 bg-border-soft" aria-hidden />
+            <span className="text-strong">Contacto directo por WhatsApp</span>
+          </div>
         </div>
-        <div className="h-[420px]">
+        <div className="h-[380px] rounded-3xl overflow-hidden border border-border">
           <MapaViveros viveros={viveros} />
         </div>
       </section>
 
       {/* Categorías */}
       {insignias.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-8" aria-labelledby="titulo-categorias">
-          <h2 id="titulo-categorias" className="font-heading text-2xl font-bold">
-            Explora por categoría
+        <section className="max-w-6xl mx-auto px-4 py-9" aria-labelledby="titulo-categorias">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-primary">
+            Categorías
+          </p>
+          <h2 id="titulo-categorias" className="font-heading text-3xl font-medium mt-2">
+            Explora por especialidad
           </h2>
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3.5 mt-7">
             {insignias.map((i) => (
               <Link
                 key={i.id}
                 href={`/buscar?insignia=${i.clave}`}
-                className="min-h-11 inline-flex items-center rounded-xl hover:opacity-80 transition-opacity"
+                className="group flex items-center gap-3.5 p-5 bg-surface border border-border rounded-2xl transition-[border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-primary"
               >
-                <InsigniaBadge insignia={i} />
+                <span className="w-11 h-11 shrink-0 rounded-xl bg-accent-soft text-primary inline-flex items-center justify-center">
+                  <IconoInsignia icono={i.icono} className="w-5 h-5" />
+                </span>
+                <span className="font-semibold text-[15.5px]">{i.nombre}</span>
               </Link>
             ))}
           </div>
@@ -74,11 +91,24 @@ export default async function Home() {
 
       {/* Destacados */}
       {destacados.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-8" aria-labelledby="titulo-destacados">
-          <h2 id="titulo-destacados" className="font-heading text-2xl font-bold">
-            Viveros destacados
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        <section className="max-w-6xl mx-auto px-4 py-9" aria-labelledby="titulo-destacados">
+          <div className="flex items-baseline justify-between gap-4">
+            <div>
+              <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-primary">
+                Selección editorial
+              </p>
+              <h2 id="titulo-destacados" className="font-heading text-3xl font-medium mt-2">
+                Viveros destacados
+              </h2>
+            </div>
+            <Link
+              href="/buscar"
+              className="min-h-11 inline-flex items-center text-[14.5px] font-semibold text-primary hover:text-primary-dark shrink-0"
+            >
+              Ver todos →
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 mt-9">
             {destacados.map((v) => (
               <ViveroCard key={v.id} vivero={v} insignias={[]} />
             ))}
@@ -87,19 +117,18 @@ export default async function Home() {
       )}
 
       {/* CTA registro */}
-      <section className="bg-primary mt-8">
-        <div className="max-w-6xl mx-auto px-4 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="text-on-primary text-center sm:text-left">
-            <h2 className="font-heading text-2xl font-bold inline-flex items-center gap-2">
-              <Store className="w-6 h-6" aria-hidden /> ¿Tienes un vivero?
-            </h2>
-            <p className="mt-1 opacity-90">
-              Aparece en el directorio y recibe clientes por WhatsApp. Es gratis.
+      <section className="bg-primary mt-14">
+        <div className="max-w-6xl mx-auto px-4 py-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+          <div className="text-on-primary">
+            <h2 className="font-heading text-3xl font-medium">¿Tienes un vivero?</h2>
+            <p className="mt-2.5 text-white/80 max-w-[440px]">
+              Aparece en el directorio y recibe clientes por WhatsApp. Registro
+              gratuito, sin comisiones.
             </p>
           </div>
           <Link
             href="/registro"
-            className="min-h-11 inline-flex items-center bg-accent text-on-primary font-semibold px-6 rounded-xl hover:opacity-90 transition-opacity"
+            className="min-h-[52px] shrink-0 inline-flex items-center bg-white text-primary font-bold text-[15.5px] px-8 rounded-xl hover:bg-white/90 transition-colors"
           >
             Registra tu vivero gratis
           </Link>

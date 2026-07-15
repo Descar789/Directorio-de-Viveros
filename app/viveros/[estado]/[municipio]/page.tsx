@@ -34,11 +34,11 @@ export default async function PaginaMunicipio({ params }: Props) {
   if (viveros.length === 0) {
     return (
       <main className="flex-1 max-w-6xl mx-auto px-4 py-16 text-center">
-        <h1 className="font-heading text-2xl font-bold">Aún no hay viveros en {municipio}</h1>
+        <h1 className="font-heading text-3xl font-medium">Aún no hay viveros en {municipio}</h1>
         <p className="text-muted mt-2">Sé el primero en aparecer aquí.</p>
         <Link
           href="/registro"
-          className="inline-flex mt-6 min-h-11 items-center bg-accent text-on-primary font-semibold px-6 rounded-xl"
+          className="inline-flex mt-6 min-h-12 items-center bg-primary text-on-primary font-semibold px-6 rounded-xl hover:bg-primary-dark transition-colors"
         >
           Registra tu vivero gratis
         </Link>
@@ -50,26 +50,26 @@ export default async function PaginaMunicipio({ params }: Props) {
   const centro: [number, number] = [viveros[0].lat, viveros[0].lng];
 
   return (
-    <main className="flex-1 max-w-6xl mx-auto px-4 py-8 w-full">
-      <nav className="text-sm text-muted" aria-label="Migas de pan">
+    <main className="flex-1 max-w-6xl mx-auto px-4 py-10 lg:py-14 w-full">
+      <nav className="text-sm text-muted-soft" aria-label="Migas de pan">
         <Link href={`/viveros/${estadoSlug}`} className="hover:text-primary">
           Viveros en {estado}
         </Link>{" "}
-        / {municipio}
+        / <span className="text-foreground font-semibold">{municipio}</span>
       </nav>
-      <h1 className="font-heading text-3xl font-bold mt-2">
+      <h1 className="font-heading text-3xl lg:text-4xl font-medium mt-3">
         Viveros en {municipio}, {estado}
       </h1>
-      <p className="text-muted mt-1">
+      <p className="text-muted mt-2">
         {viveros.length} {viveros.length === 1 ? "vivero encontrado" : "viveros encontrados"}
       </p>
-      <div className="grid lg:grid-cols-[1fr_380px] gap-6 mt-6">
-        <div className="grid sm:grid-cols-2 gap-4 content-start">
+      <div className="grid lg:grid-cols-[1fr_380px] gap-6 mt-8">
+        <div className="grid sm:grid-cols-2 gap-5 content-start">
           {viveros.map((v) => (
-            <ViveroCard key={v.id} vivero={v} insignias={insignias[v.id] ?? []} />
+            <ViveroCard key={v.id} vivero={v} insignias={insignias[v.id] ?? []} variante="fila" />
           ))}
         </div>
-        <div className="h-[420px] lg:sticky lg:top-20">
+        <div className="h-[420px] lg:sticky lg:top-24 rounded-2xl overflow-hidden border border-border">
           <MapaViveros viveros={viveros} centro={centro} zoom={12} />
         </div>
       </div>

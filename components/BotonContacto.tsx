@@ -30,7 +30,10 @@ export default function BotonContacto({ vivero }: { vivero: Vivero }) {
   const comoLlegar = `https://maps.google.com/?q=${vivero.lat},${vivero.lng}`;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 bg-surface border-t border-border p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex gap-2 lg:static lg:flex-col lg:rounded-2xl lg:border lg:p-4">
+    <div className="fixed bottom-0 inset-x-0 z-40 bg-surface border-t border-border p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex gap-2 lg:static lg:flex-col lg:rounded-[18px] lg:border lg:p-6">
+      <p className="hidden lg:block text-[12.5px] font-bold uppercase tracking-[0.08em] text-muted-soft mb-1">
+        Contacto
+      </p>
       {vivero.whatsapp && (
         <a
           href={`https://wa.me/${vivero.whatsapp}`}

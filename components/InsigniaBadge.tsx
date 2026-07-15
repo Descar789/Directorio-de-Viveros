@@ -25,6 +25,11 @@ const ICONOS: Record<string, LucideIcon> = {
   shovel: Shovel,
 };
 
+export function IconoInsignia({ icono, className }: { icono: string; className?: string }) {
+  const Icono = ICONOS[icono] ?? Tag;
+  return <Icono className={className} aria-hidden />;
+}
+
 export default function InsigniaBadge({ insignia }: { insignia: Insignia }) {
   const Icono = ICONOS[insignia.icono] ?? Tag;
   return (

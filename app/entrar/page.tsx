@@ -61,7 +61,7 @@ function FormularioEntrar() {
       <button
         type="button"
         onClick={entrarConGoogle}
-        className="w-full min-h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface font-semibold hover:bg-background transition-colors"
+        className="w-full min-h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface font-semibold hover:bg-surface-soft transition-colors"
       >
         Continuar con Google
       </button>
@@ -107,10 +107,12 @@ function FormularioEntrar() {
 export default function PaginaEntrar() {
   return (
     <main className="flex-1 flex items-center justify-center px-4 py-16">
-      <div className="w-full max-w-sm bg-surface border border-border rounded-2xl p-8">
+      <div className="w-full max-w-sm bg-surface border border-border rounded-[20px] p-8">
         <div className="text-center mb-8">
-          <Sprout className="w-10 h-10 text-primary mx-auto" aria-hidden />
-          <h1 className="font-heading text-2xl font-bold mt-2">Entrar a BuscaViveros</h1>
+          <span className="w-12 h-12 rounded-xl bg-accent-soft inline-flex items-center justify-center">
+            <Sprout className="w-6 h-6 text-primary" aria-hidden />
+          </span>
+          <h1 className="font-heading text-2xl font-medium mt-3">Entrar a BuscaViveros</h1>
           <p className="text-muted text-sm mt-1">
             Para registrar o administrar tu vivero
           </p>

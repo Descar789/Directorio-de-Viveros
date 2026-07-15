@@ -10,9 +10,11 @@ export default function Footer() {
     <footer className="bg-surface border-t border-border mt-16">
       <div className="max-w-6xl mx-auto px-4 py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="inline-flex items-center gap-2 font-heading font-bold text-lg">
-            <Sprout className="w-6 h-6 text-primary" aria-hidden />
-            Busca<span className="text-primary">Viveros</span>
+          <p className="inline-flex items-center gap-2.5 font-heading font-semibold text-[19px]">
+            <span className="w-[30px] h-[30px] rounded-lg bg-accent-soft inline-flex items-center justify-center">
+              <Sprout className="w-4 h-4 text-primary" aria-hidden />
+            </span>
+            BuscaViveros
           </p>
           <p className="text-sm text-muted mt-2">
             El directorio de viveros más completo de México.
@@ -20,7 +22,7 @@ export default function Footer() {
         </div>
 
         <nav aria-label="Estados destacados">
-          <h2 className="font-heading font-semibold text-sm uppercase tracking-wide text-muted">
+          <h2 className="text-[12.5px] font-bold uppercase tracking-[0.08em] text-muted-soft">
             Viveros por estado
           </h2>
           <ul className="mt-3 space-y-1">
@@ -35,7 +37,7 @@ export default function Footer() {
         </nav>
 
         <nav aria-label="Más estados">
-          <h2 className="font-heading font-semibold text-sm uppercase tracking-wide text-muted">
+          <h2 className="text-[12.5px] font-bold uppercase tracking-[0.08em] text-muted-soft">
             Más estados
           </h2>
           <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1">
@@ -50,7 +52,7 @@ export default function Footer() {
         </nav>
 
         <nav aria-label="Legal y registro">
-          <h2 className="font-heading font-semibold text-sm uppercase tracking-wide text-muted">
+          <h2 className="text-[12.5px] font-bold uppercase tracking-[0.08em] text-muted-soft">
             BuscaViveros
           </h2>
           <ul className="mt-3 space-y-1">

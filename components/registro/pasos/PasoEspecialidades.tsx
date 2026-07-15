@@ -34,7 +34,7 @@ export default function PasoEspecialidades({
 
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold">¿Qué vendes?</h2>
+      <h2 className="font-heading text-[21px] font-semibold">¿Qué vendes?</h2>
       <p className="text-muted mt-1">Elige todas las que apliquen.</p>
       <div className="flex flex-wrap gap-2 mt-6" role="group" aria-label="Especialidades">
         {catalogo.map((i) => {

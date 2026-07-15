@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function PaginaPrivacidad() {
   return (
     <main className="flex-1 max-w-3xl mx-auto px-4 py-12 w-full">
-      <h1 className="font-heading text-3xl font-bold">Aviso de privacidad</h1>
+      <h1 className="font-heading text-3xl font-medium">Aviso de privacidad</h1>
       <p className="text-muted mt-1">Última actualización: julio de 2026</p>
 
       <div className="mt-8 space-y-8 leading-relaxed">

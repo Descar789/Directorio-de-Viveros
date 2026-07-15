@@ -13,7 +13,7 @@ export default function PasoContacto({
 }) {
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold">¿Cómo te contactan los clientes?</h2>
+      <h2 className="font-heading text-[21px] font-semibold">¿Cómo te contactan los clientes?</h2>
       <p className="text-muted mt-1">Necesitamos al menos tu WhatsApp o un teléfono.</p>
 
       <div className="grid sm:grid-cols-2 gap-3 mt-6">

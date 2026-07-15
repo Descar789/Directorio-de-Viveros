@@ -9,7 +9,7 @@ export default function GaleriaFotos({ fotos, nombre }: { fotos: string[]; nombr
 
   if (fotos.length === 0) {
     return (
-      <div className="h-64 lg:h-96 rounded-2xl bg-background border border-border flex items-center justify-center">
+      <div className="h-64 lg:h-96 rounded-[18px] bg-surface-soft border border-border flex items-center justify-center">
         <Leaf className="w-16 h-16 text-primary/40" aria-hidden />
       </div>
     );
@@ -17,7 +17,7 @@ export default function GaleriaFotos({ fotos, nombre }: { fotos: string[]; nombr
 
   return (
     <div>
-      <div className="relative h-64 lg:h-96 rounded-2xl overflow-hidden bg-background">
+      <div className="relative h-64 lg:h-96 rounded-[18px] overflow-hidden bg-surface-soft">
         <Image
           src={fotos[activa]}
           alt={`${nombre} — foto ${activa + 1} de ${fotos.length}`}

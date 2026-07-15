@@ -38,7 +38,7 @@ export default async function PaginaMiVivero() {
         {solicitud ? (
           <>
             <Clock className="w-14 h-14 text-accent mx-auto" aria-hidden />
-            <h1 className="font-heading text-2xl font-bold mt-4">
+            <h1 className="font-heading text-2xl font-medium mt-4">
               Tu solicitud está en revisión
             </h1>
             <p className="text-muted mt-2">
@@ -53,7 +53,7 @@ export default async function PaginaMiVivero() {
         ) : (
           <>
             <Store className="w-14 h-14 text-primary mx-auto" aria-hidden />
-            <h1 className="font-heading text-2xl font-bold mt-4">
+            <h1 className="font-heading text-2xl font-medium mt-4">
               Aún no tienes un vivero registrado
             </h1>
             <p className="text-muted mt-2">
@@ -81,7 +81,7 @@ export default async function PaginaMiVivero() {
     <main className="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-heading text-3xl font-bold">{vivero.nombre}</h1>
+          <h1 className="font-heading text-3xl font-medium">{vivero.nombre}</h1>
           <p className="text-muted">
             {vivero.municipio}, {vivero.estado} ·{" "}
             <span className="capitalize">{vivero.estatus}</span>

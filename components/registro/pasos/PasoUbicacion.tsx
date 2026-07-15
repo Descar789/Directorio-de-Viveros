@@ -30,7 +30,7 @@ export default function PasoUbicacion({
 
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold">¿Dónde está tu vivero?</h2>
+      <h2 className="font-heading text-[21px] font-semibold">¿Dónde está tu vivero?</h2>
       <p className="text-muted mt-1">Arrastra el pin hasta la entrada de tu vivero.</p>
 
       <div className="grid sm:grid-cols-2 gap-3 mt-6">

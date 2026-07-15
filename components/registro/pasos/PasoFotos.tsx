@@ -52,7 +52,7 @@ export default function PasoFotos({
 
   return (
     <div>
-      <h2 className="font-heading text-2xl font-bold">Fotos de tu vivero</h2>
+      <h2 className="font-heading text-[21px] font-semibold">Fotos de tu vivero</h2>
       <p className="text-muted mt-1">
         Al menos una. La primera será la portada de tu ficha.
       </p>

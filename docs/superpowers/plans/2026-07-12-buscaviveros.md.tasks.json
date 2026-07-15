@@ -2,7 +2,7 @@
   "planPath": "docs/superpowers/plans/2026-07-12-buscaviveros.md",
   "tasks": [
     { "id": 1, "planTask": 0, "subject": "Task 0: Scaffold del proyecto", "status": "completed" },
-    { "id": 2, "planTask": 1, "subject": "Task 1: Esquema Supabase (schema + RLS + búsqueda)", "status": "in_progress", "blockedBy": [1], "nota": "Código completo y verificado salvo métricas: usuario debe correr 0003_fix_metricas.sql y 0004_storage.sql en SQL Editor" },
+    { "id": 2, "planTask": 1, "subject": "Task 1: Esquema Supabase (schema + RLS + búsqueda)", "status": "completed", "blockedBy": [1], "nota": "0003/0004 aplicadas por usuario 2026-07-13; métrica verificada (vistas incrementa)" },
     { "id": 3, "planTask": 2, "subject": "Task 2: Clientes Supabase, tipos y auth", "status": "completed", "nota": "Google OAuth requiere config manual en dashboard" },
     { "id": 4, "planTask": 3, "subject": "Task 3: Layout global y componentes base", "status": "completed" },
     { "id": 5, "planTask": 4, "subject": "Task 4: Módulo de búsqueda con tests", "status": "completed" },

@@ -29,20 +29,20 @@ test.describe("wizard de registro", () => {
 
     // Paso 1: nombre
     await page.getByLabel("Nombre del vivero").fill("Vivero E2E Playwright");
-    await page.getByRole("button", { name: "Continuar" }).click();
+    await page.getByRole("button", { name: "Siguiente" }).click();
 
     // Paso 2: ubicación
     await page.getByLabel("Estado", { exact: true }).selectOption("Morelos");
     await page.getByLabel("Municipio", { exact: true }).fill("Cuautla");
-    await page.getByRole("button", { name: "Continuar" }).click();
+    await page.getByRole("button", { name: "Siguiente" }).click();
 
     // Paso 3: contacto
     await page.getByLabel("WhatsApp", { exact: false }).first().fill("735 987 6543");
-    await page.getByRole("button", { name: "Continuar" }).click();
+    await page.getByRole("button", { name: "Siguiente" }).click();
 
     // Paso 4: especialidades
     await page.getByRole("button", { name: /Ornamental/ }).click();
-    await page.getByRole("button", { name: "Continuar" }).click();
+    await page.getByRole("button", { name: "Siguiente" }).click();
 
     // Paso 5: fotos
     await page.setInputFiles('input[type="file"]', {
@@ -51,11 +51,11 @@ test.describe("wizard de registro", () => {
       buffer: PNG_MINIMO,
     });
     await expect(page.locator('img[alt="Foto 1"]')).toBeVisible({ timeout: 20000 });
-    await page.getByRole("button", { name: "Continuar" }).click();
+    await page.getByRole("button", { name: "Siguiente" }).click();
 
     // Paso 6: revisión y envío
     await expect(page.getByText("Revisa tu información")).toBeVisible();
-    await page.getByRole("button", { name: "Enviar mi vivero" }).click();
+    await page.getByRole("button", { name: "Enviar solicitud" }).click();
 
     await expect(page.getByText("Tu vivero está en revisión")).toBeVisible({ timeout: 15000 });
 

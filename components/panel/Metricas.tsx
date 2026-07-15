@@ -17,7 +17,7 @@ export default function Metricas({ vivero }: { vivero: Vivero }) {
         {TARJETAS.map(({ clave, etiqueta, Icono }) => (
           <div key={clave} className="bg-surface border border-border rounded-2xl p-5">
             <Icono className="w-5 h-5 text-primary" aria-hidden />
-            <p className="font-heading text-3xl font-bold mt-2">{vivero[clave]}</p>
+            <p className="font-heading text-3xl font-medium mt-2">{vivero[clave]}</p>
             <p className="text-sm text-muted">{etiqueta}</p>
           </div>
         ))}
