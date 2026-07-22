@@ -44,32 +44,33 @@ export default async function Home() {
           <div className="mt-8">
             <Buscador />
           </div>
-          <div className="mt-6 bg-surface-soft rounded-xl px-4.5 py-3.5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-            <span className="font-semibold">
-              {viveros.length >= 50 ? `${viveros.length} viveros verificados` : "Viveros verificados"}
-            </span>
-            <span className="hidden sm:block w-px h-4 bg-border-soft" aria-hidden />
-            <span className="text-strong">
-              {totalEstados > 0
-                ? `${totalEstados} ${totalEstados === 1 ? "estado" : "estados"}`
-                : "Todo México"}
-            </span>
-            <span className="hidden sm:block w-px h-4 bg-border-soft" aria-hidden />
-            <span className="text-strong">Contacto directo por WhatsApp</span>
-          </div>
         </div>
         <div className="h-[380px] rounded-3xl overflow-hidden border border-border">
           <MapaViveros viveros={viveros} />
         </div>
       </section>
 
+      {/* Franja de confianza */}
+      <section className="max-w-6xl mx-auto px-4 pb-9">
+        <div className="bg-surface-soft rounded-xl px-4.5 py-3.5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+          <span className="font-semibold">
+            {viveros.length >= 50 ? `${viveros.length} viveros verificados` : "Viveros verificados"}
+          </span>
+          <span className="hidden sm:block w-px h-4 bg-border-soft" aria-hidden />
+          <span className="text-strong">
+            {totalEstados > 0
+              ? `${totalEstados} ${totalEstados === 1 ? "estado" : "estados"}`
+              : "Todo México"}
+          </span>
+          <span className="hidden sm:block w-px h-4 bg-border-soft" aria-hidden />
+          <span className="text-strong">Contacto directo por WhatsApp</span>
+        </div>
+      </section>
+
       {/* Categorías */}
       {insignias.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 py-9" aria-labelledby="titulo-categorias">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-primary">
-            Categorías
-          </p>
-          <h2 id="titulo-categorias" className="font-heading text-3xl font-medium mt-2">
+          <h2 id="titulo-categorias" className="font-heading text-3xl font-medium">
             Explora por especialidad
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3.5 mt-7">
@@ -77,7 +78,7 @@ export default async function Home() {
               <Link
                 key={i.id}
                 href={`/buscar?insignia=${i.clave}`}
-                className="group flex items-center gap-3.5 p-5 bg-surface border border-border rounded-2xl transition-[border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-primary"
+                className="group flex items-center gap-3.5 p-5 bg-surface border border-border rounded-[18px] transition-[border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-primary"
               >
                 <span className="w-11 h-11 shrink-0 rounded-xl bg-accent-soft text-primary inline-flex items-center justify-center">
                   <IconoInsignia icono={i.icono} className="w-5 h-5" />
@@ -93,14 +94,9 @@ export default async function Home() {
       {destacados.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 py-9" aria-labelledby="titulo-destacados">
           <div className="flex items-baseline justify-between gap-4">
-            <div>
-              <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-primary">
-                Selección editorial
-              </p>
-              <h2 id="titulo-destacados" className="font-heading text-3xl font-medium mt-2">
-                Viveros destacados
-              </h2>
-            </div>
+            <h2 id="titulo-destacados" className="font-heading text-3xl font-medium">
+              Viveros destacados
+            </h2>
             <Link
               href="/buscar"
               className="min-h-11 inline-flex items-center text-[14.5px] font-semibold text-primary hover:text-primary-dark shrink-0"
