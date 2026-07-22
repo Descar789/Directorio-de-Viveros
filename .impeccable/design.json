@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-21T00:00:00.000Z",
+  "title": "Design System: BuscaViveros",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Terracota", "canonical": "oklch(53% 0.15 35)", "tonalRamp": ["#3d1a0e", "#5c2515", "#8b3419", "#c1502e", "#d2603c", "#e08b6c", "#f0bfa8", "#fbe6dc"] },
+      "primary-dark": { "role": "primary", "displayName": "Terracota Oscuro", "canonical": "oklch(41% 0.14 35)" },
+      "plum": { "role": "secondary", "displayName": "Ciruela", "canonical": "oklch(28% 0.09 335)", "tonalRamp": ["#1a0c17", "#2c1626", "#3d1e33", "#4b2142", "#6b3960", "#9c6a8e", "#c9a3bd", "#f1e4ee"] },
+      "plum-soft": { "role": "secondary", "displayName": "Ciruela Suave", "canonical": "oklch(93% 0.02 335)" },
+      "accent": { "role": "tertiary", "displayName": "Mostaza Oscurecido", "canonical": "oklch(48% 0.1 75)", "tonalRamp": ["#2e2004", "#463007", "#6c4a0a", "#9c6a0b", "#b8830f", "#d4a54a", "#e8c98a", "#fbe6dc"] },
+      "accent-soft": { "role": "tertiary", "displayName": "Durazno Suave", "canonical": "oklch(94% 0.03 40)" },
+      "surface-soft": { "role": "neutral", "displayName": "Crema Superficie Suave", "canonical": "oklch(96% 0.005 80)" },
+      "foreground": { "role": "neutral", "displayName": "Tinta Café", "canonical": "oklch(24% 0.02 50)" },
+      "strong": { "role": "neutral", "displayName": "Café Fuerte", "canonical": "oklch(30% 0.02 50)" },
+      "muted": { "role": "neutral", "displayName": "Café Apagado", "canonical": "oklch(50% 0.02 50)" },
+      "muted-soft": { "role": "neutral", "displayName": "Café Apagado Claro", "canonical": "oklch(66% 0.02 50)" },
+      "border": { "role": "neutral", "displayName": "Borde Crema", "canonical": "oklch(90% 0.02 75)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero h1 and empty-state lead lines only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles, nursery detail page name." },
+      "title": { "displayName": "Title", "purpose": "Card titles (ViveroCard nombre), form section headers." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, form copy, list text — cap ~70ch." },
+      "label": { "displayName": "Label", "purpose": "Sparse uppercase microcopy (contact-bar eyebrow, form hints)." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "0 8px 20px rgba(42,32,25,0.08)", "purpose": "Default resting elevation for row-style cards and interactive containers." },
+      { "name": "card-floating", "value": "0 14px 30px rgba(42,32,25,0.14)", "purpose": "Info panel overlapping a photo (ViveroCard editorial variant)." }
+    ],
+    "motion": [
+      { "name": "color-transition", "value": "150-200ms ease", "purpose": "Button/link hover and focus color transitions." },
+      { "name": "card-lift", "value": "transform 200ms ease, translateY(-4px)", "purpose": "Editorial ViveroCard hover lift." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (WhatsApp)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid terracotta CTA with WhatsApp icon — the single most-used action in the system.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z\"/></svg>WhatsApp</a>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:12px 24px; background:#c1502e; color:#ffffff; font-weight:600; font-size:0.9375rem; border-radius:12px; border:none; transition:background 180ms ease; } .ds-btn-primary .ds-icon { width:20px; height:20px; } .ds-btn-primary:hover { background:#8b3419; } .ds-btn-primary:focus-visible { outline:none; box-shadow:0 0 0 2px #ffffff, 0 0 0 4px #c1502e; }"
+    },
+    {
+      "name": "Secondary Button (Outline)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined equal-weight sibling to the primary button (e.g. 'Llamar', 'Cómo llegar').",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Llamar</a>",
+      "css": ".ds-btn-secondary { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:12px 24px; background:transparent; color:#c1502e; font-weight:600; font-size:0.9375rem; border-radius:12px; border:1px solid #c1502e; transition:background 180ms ease, color 180ms ease; } .ds-btn-secondary:hover { background:rgba(193,80,46,0.1); } .ds-btn-secondary:focus-visible { outline:none; box-shadow:0 0 0 2px #ffffff, 0 0 0 4px #c1502e; }"
+    },
+    {
+      "name": "Nursery Card (Editorial)",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Photo-forward card with a floating info panel — the primary listing pattern.",
+      "html": "<article class=\"ds-vivero-card\"><div class=\"ds-vivero-photo\"><span class=\"ds-vivero-badge\">Destacado</span></div><div class=\"ds-vivero-panel\"><h3 class=\"ds-vivero-title\">Vivero La Esperanza</h3><p class=\"ds-vivero-loc\">Cuautla, Morelos</p></div></article>",
+      "css": ".ds-vivero-card { position:relative; padding-bottom:36px; font-family:'Work Sans', sans-serif; } .ds-vivero-photo { position:relative; height:240px; border-radius:28px; background:#f7f6f4; overflow:hidden; transition:transform 200ms ease; } .ds-vivero-card:hover .ds-vivero-photo { transform:translateY(-4px); } .ds-vivero-badge { position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.9); backdrop-filter:blur(4px); color:#2a2019; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:6px 12px; border-radius:9999px; } .ds-vivero-panel { position:absolute; left:16px; right:16px; bottom:-28px; background:#ffffff; border-radius:18px; padding:16px 18px; box-shadow:0 14px 30px rgba(42,32,25,0.14); } .ds-vivero-title { font-family:'Newsreader', Georgia, serif; font-weight:600; font-size:1.125rem; letter-spacing:-0.015em; color:#3a322c; } .ds-vivero-loc { font-size:13px; color:#7a6f63; margin-top:4px; }"
+    },
+    {
+      "name": "Insignia Chip",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Small pill badge for nursery specialties (Mayoreo, Suculentas, etc.).",
+      "html": "<span class=\"ds-chip\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 6L9 17l-5-5\"/></svg>Verificado</span>",
+      "css": ".ds-chip { display:inline-flex; align-items:center; gap:4px; border:1px solid #ede1cb; background:#ffffff; color:#7a6f63; font-size:12px; padding:2px 8px; border-radius:9999px; } .ds-chip .ds-icon { width:14px; height:14px; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky solid-terracotta header — the header never loses its color identity.",
+      "html": "<header class=\"ds-header\"><span class=\"ds-header-brand\">BuscaViveros</span><nav class=\"ds-header-nav\"><a href=\"#\">Explorar</a><a href=\"#\">Directorio</a><a href=\"#\" class=\"ds-header-cta\">Registra tu vivero gratis</a></nav></header>",
+      "css": ".ds-header { background:#c1502e; padding:0 16px; height:72px; display:flex; align-items:center; justify-content:space-between; font-family:'Work Sans', sans-serif; } .ds-header-brand { font-family:'Newsreader', Georgia, serif; font-weight:600; font-size:22px; color:#ffffff; } .ds-header-nav { display:flex; align-items:center; gap:32px; } .ds-header-nav a { color:rgba(255,255,255,0.75); font-weight:500; font-size:15px; text-decoration:none; transition:color 180ms ease; } .ds-header-nav a:hover { color:#ffffff; } .ds-header-cta { background:#ffffff; color:#c1502e; font-weight:700; padding:10px 20px; border-radius:10px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Standard form field — terracotta focus ring, warm border.",
+      "html": "<textarea class=\"ds-input\" rows=\"3\" placeholder=\"Cuéntanos sobre tu vivero\"></textarea>",
+      "css": ".ds-input { width:100%; border-radius:12px; border:1px solid #ede1cb; background:#ffffff; padding:8px 12px; font-family:'Work Sans', sans-serif; font-size:0.9375rem; color:#2a2019; } .ds-input:focus { outline:none; box-shadow:0 0 0 2px #c1502e; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Vivero de Confianza",
+    "overview": "BuscaViveros reads like a well-kept neighborhood nursery, not a startup dashboard: terracotta and warm crema tones, a serif that feels handwritten-but-serious for names and headings, and generous rounded surfaces that photos and plant names sit on. The system exists to let two very different people trust it in the same breath — a buyer scanning for a nearby vivero on their phone, and a nursery owner deciding whether to hand over their business's photos and contact info. Neither should feel like they've landed in a cold SaaS tool or a dated Yellow-Pages listing.\n\nIt explicitly rejects: generic uncurated directory tables (no visual care, no photography); cold corporate SaaS chrome (blue-gray, identical cards, B2B-without-soul); and the bright-green-and-Poppins playful direction from the original spec, discarded for feeling childish next to a directory that needs business credibility.",
+    "keyCharacteristics": [
+      "Terracotta primary carries every primary action — the one color a user should always recognize as \"do this next.\"",
+      "Ciruela (plum) is reserved, not a workhorse color.",
+      "Newsreader serif headlines paired with Work Sans body — editorial contrast.",
+      "Warm, tinted shadows (never pure black) keep elevation feeling like sunlight.",
+      "Generously rounded surfaces (10–28px) read as tactile and approachable."
+    ],
+    "rules": [
+      { "name": "The One Action Rule", "body": "Terracotta appears exactly where the user should tap next. It never doubles as a decorative accent — if it's terracotta, it's actionable.", "section": "colors" },
+      { "name": "The Warm-Neutral Rule", "body": "Every gray in this system is a warm gray. A cool blue-gray anywhere is a bug, not a variant.", "section": "colors" },
+      { "name": "The Serif-Means-Named-Thing Rule", "body": "Newsreader is reserved for proper nouns and headlines. Body copy, buttons, and UI chrome always stay in Work Sans.", "section": "typography" },
+      { "name": "The Warm Shadow Rule", "body": "Every shadow uses the ink color (#2a2019) as its tint, never neutral/pure black.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use terracotta (#c1502e) exclusively for the action the user should take next — never as decoration.",
+      "Do tint every shadow toward #2a2019 (warm ink), never neutral black.",
+      "Do pair Newsreader serif with proper nouns and headings only; keep UI chrome in Work Sans.",
+      "Do keep every gray warm — check new neutrals against the existing border/muted hue before adding one.",
+      "Do hold body/muted text at ≥4.5:1 contrast on surface/surface-soft — muted (#7a6f63) is the floor, don't go lighter."
+    ],
+    "donts": [
+      "Don't design anything that reads as a generic, uncurated directory table.",
+      "Don't reach for cold corporate SaaS chrome — no blue-gray palettes, no identical featureless card grids.",
+      "Don't revive the bright-green + Poppins playful direction — it read childish next to a directory that needs business credibility.",
+      "Don't use a colored border-left/border-right stripe as a card accent.",
+      "Don't let a secondary/ghost button look weaker than its primary sibling in height or corner radius."
+    ]
+  }
+}
