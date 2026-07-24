@@ -21,7 +21,7 @@ export default function MapaPin({
   onMover: (lat: number, lng: number) => void;
 }) {
   return (
-    <MapContainer center={[lat, lng]} zoom={13} className="h-full w-full rounded-2xl">
+    <MapContainer center={[lat, lng]} zoom={13} className="h-full w-full rounded-lg">
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"

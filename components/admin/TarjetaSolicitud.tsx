@@ -37,7 +37,7 @@ export default function TarjetaSolicitud({
   }
 
   return (
-    <article className="bg-surface border border-border rounded-2xl p-5">
+    <article className="bg-surface border border-border rounded-lg p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-wide text-muted">
@@ -102,14 +102,14 @@ export default function TarjetaSolicitud({
             value={nota}
             onChange={(e) => setNota(e.target.value)}
             rows={2}
-            className="mt-1 w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <div className="flex gap-2 mt-2">
             <button
               type="button"
               onClick={rechazar}
               disabled={pendiente || !nota.trim()}
-              className="min-h-11 inline-flex items-center gap-2 bg-destructive text-on-primary font-semibold px-4 rounded-xl disabled:opacity-60"
+              className="min-h-11 inline-flex items-center gap-2 bg-destructive text-on-primary font-semibold px-4 rounded-md disabled:opacity-60"
             >
               {pendiente && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
               Confirmar rechazo
@@ -117,7 +117,7 @@ export default function TarjetaSolicitud({
             <button
               type="button"
               onClick={() => setRechazando(false)}
-              className="min-h-11 px-4 rounded-xl border border-border font-semibold"
+              className="min-h-11 px-4 rounded-md border border-border font-semibold"
             >
               Cancelar
             </button>
@@ -129,7 +129,7 @@ export default function TarjetaSolicitud({
             type="button"
             onClick={aprobar}
             disabled={pendiente}
-            className="min-h-11 inline-flex items-center gap-2 bg-primary text-on-primary font-semibold px-4 rounded-xl hover:bg-primary-dark transition-colors disabled:opacity-60"
+            className="min-h-11 inline-flex items-center gap-2 bg-primary text-on-primary font-semibold px-4 rounded-md hover:bg-primary-dark transition-colors disabled:opacity-60"
           >
             {pendiente ? (
               <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
@@ -142,7 +142,7 @@ export default function TarjetaSolicitud({
             type="button"
             onClick={() => setRechazando(true)}
             disabled={pendiente}
-            className="min-h-11 inline-flex items-center gap-2 border border-destructive text-destructive font-semibold px-4 rounded-xl disabled:opacity-60"
+            className="min-h-11 inline-flex items-center gap-2 border border-destructive text-destructive font-semibold px-4 rounded-md disabled:opacity-60"
           >
             <X className="w-4 h-4" aria-hidden /> Rechazar
           </button>

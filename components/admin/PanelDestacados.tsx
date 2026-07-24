@@ -67,7 +67,7 @@ export default function PanelDestacados({ vigentes }: { vigentes: Vivero[] }) {
             onKeyDown={(e) => e.key === "Enter" && buscar()}
             placeholder="Buscar vivero por nombre o municipio"
             aria-label="Buscar vivero"
-            className="flex-1 min-h-11 rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="flex-1 min-h-11 rounded-md border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <label className="sr-only" htmlFor="fecha-hasta">
             Destacado hasta
@@ -77,13 +77,13 @@ export default function PanelDestacados({ vigentes }: { vigentes: Vivero[] }) {
             type="date"
             value={hasta}
             onChange={(e) => setHasta(e.target.value)}
-            className="min-h-11 rounded-xl border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="min-h-11 rounded-md border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <button
             type="button"
             onClick={buscar}
             disabled={buscando}
-            className="min-h-11 inline-flex items-center gap-2 bg-primary text-on-primary font-semibold px-4 rounded-xl disabled:opacity-60"
+            className="min-h-11 inline-flex items-center gap-2 bg-primary text-on-primary font-semibold px-4 rounded-md disabled:opacity-60"
           >
             {buscando ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden /> : <Search className="w-4 h-4" aria-hidden />}
             Buscar
@@ -98,7 +98,7 @@ export default function PanelDestacados({ vigentes }: { vigentes: Vivero[] }) {
 
         <ul className="mt-3 space-y-2">
           {resultados.map((v) => (
-            <li key={v.id} className="flex items-center justify-between gap-3 bg-surface border border-border rounded-xl px-4 py-3">
+            <li key={v.id} className="flex items-center justify-between gap-3 bg-surface border border-border rounded-md px-4 py-3">
               <div>
                 <p className="font-semibold">{v.nombre}</p>
                 <p className="text-sm text-muted">
@@ -109,7 +109,7 @@ export default function PanelDestacados({ vigentes }: { vigentes: Vivero[] }) {
                 type="button"
                 onClick={() => activar(v.id)}
                 disabled={pendiente}
-                className="min-h-11 inline-flex items-center gap-2 bg-accent text-on-primary font-semibold px-4 rounded-xl shrink-0 disabled:opacity-60"
+                className="min-h-11 inline-flex items-center gap-2 bg-accent text-on-primary font-semibold px-4 rounded-md shrink-0 disabled:opacity-60"
               >
                 <Star className="w-4 h-4" aria-hidden /> Destacar
               </button>
@@ -132,7 +132,7 @@ export default function PanelDestacados({ vigentes }: { vigentes: Vivero[] }) {
               return (
                 <li
                   key={v.id}
-                  className={`flex items-center justify-between gap-3 bg-surface border rounded-xl px-4 py-3 ${
+                  className={`flex items-center justify-between gap-3 bg-surface border rounded-md px-4 py-3 ${
                     porVencer ? "border-accent" : "border-border"
                   }`}
                 >
@@ -149,7 +149,7 @@ export default function PanelDestacados({ vigentes }: { vigentes: Vivero[] }) {
                     onClick={() => quitar(v.id)}
                     disabled={pendiente}
                     aria-label={`Quitar destacado de ${v.nombre}`}
-                    className="min-h-11 inline-flex items-center gap-2 border border-border font-semibold px-4 rounded-xl shrink-0 hover:border-destructive hover:text-destructive disabled:opacity-60"
+                    className="min-h-11 inline-flex items-center gap-2 border border-border font-semibold px-4 rounded-md shrink-0 hover:border-destructive hover:text-destructive disabled:opacity-60"
                   >
                     <StarOff className="w-4 h-4" aria-hidden /> Quitar
                   </button>

@@ -59,7 +59,7 @@ export default function PasoFotos({
 
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mt-6">
         {datos.fotos.map((url, i) => (
-          <div key={url} className="relative aspect-square rounded-xl overflow-hidden border border-border">
+          <div key={url} className="relative aspect-square rounded-lg overflow-hidden border border-border">
             <Image src={url} alt={`Foto ${i + 1}`} fill className="object-cover" sizes="150px" />
             <button
               type="button"
@@ -75,7 +75,7 @@ export default function PasoFotos({
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={subiendo}
-          className="aspect-square rounded-xl border-2 border-dashed border-border inline-flex flex-col items-center justify-center gap-1 text-muted hover:border-primary hover:text-primary transition-colors disabled:opacity-60"
+          className="aspect-square rounded-md border-2 border-dashed border-border inline-flex flex-col items-center justify-center gap-1 text-muted hover:border-primary hover:text-primary transition-colors disabled:opacity-60"
         >
           {subiendo ? (
             <Loader2 className="w-6 h-6 animate-spin" aria-hidden />

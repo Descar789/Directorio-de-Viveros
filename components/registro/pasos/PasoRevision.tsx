@@ -25,7 +25,7 @@ function Fila({
         type="button"
         onClick={() => onIr(paso)}
         aria-label={`Editar ${titulo}`}
-        className="min-h-11 min-w-11 inline-flex items-center justify-center text-primary hover:bg-primary/10 rounded-xl"
+        className="min-h-11 min-w-11 inline-flex items-center justify-center text-primary hover:bg-primary/10 rounded-md"
       >
         <Pencil className="w-4 h-4" aria-hidden />
       </button>
@@ -47,7 +47,7 @@ export default function PasoRevision({
       <h2 className="font-heading text-[21px] font-semibold">Revisa tu información</h2>
       <p className="text-muted mt-1">Puedes editar cualquier dato antes de enviar.</p>
 
-      <div className="mt-6 bg-surface border border-border rounded-2xl px-4">
+      <div className="mt-6 bg-surface border border-border rounded-lg px-4">
         <Fila titulo="Nombre" valor={datos.nombre} paso={1} onIr={onIr} />
         <Fila
           titulo="Ubicación"

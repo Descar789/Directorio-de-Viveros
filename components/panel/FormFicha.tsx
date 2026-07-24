@@ -14,7 +14,7 @@ import type { Vivero, Insignia } from "@/lib/tipos";
 const DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"];
 
 const claseInput =
-  "mt-1 w-full min-h-11 rounded-xl border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary";
+  "mt-1 w-full min-h-11 rounded-md border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary";
 
 export default function FormFicha({
   vivero,
@@ -110,7 +110,7 @@ export default function FormFicha({
           </div>
           <div className="sm:col-span-2">
             <label htmlFor="f-desc" className="font-medium">Descripción</label>
-            <textarea id="f-desc" rows={3} value={campos.descripcion} onChange={(e) => set("descripcion", e.target.value)} className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" />
+            <textarea id="f-desc" rows={3} value={campos.descripcion} onChange={(e) => set("descripcion", e.target.value)} className="mt-1 w-full rounded-md border border-border bg-surface px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" />
           </div>
           <div>
             <label htmlFor="f-whatsapp" className="font-medium">WhatsApp</label>
@@ -161,7 +161,7 @@ export default function FormFicha({
                       : [...campos.especialidades, i.clave]
                   )
                 }
-                className={`min-h-11 inline-flex items-center rounded-xl px-1 ${activa ? "ring-2 ring-primary rounded-full" : "hover:opacity-80"}`}
+                className={`min-h-11 inline-flex items-center rounded-md px-1 ${activa ? "ring-2 ring-primary rounded-full" : "hover:opacity-80"}`}
               >
                 <InsigniaBadge insignia={i} />
               </button>
@@ -175,7 +175,7 @@ export default function FormFicha({
         <p className="text-sm text-muted mt-1">La primera es la portada — usa la flecha para mover una foto al inicio.</p>
         <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mt-3">
           {campos.fotos.map((url, i) => (
-            <div key={url} className="relative aspect-square rounded-xl overflow-hidden border border-border">
+            <div key={url} className="relative aspect-square rounded-lg overflow-hidden border border-border">
               <Image src={url} alt={`Foto ${i + 1}`} fill className="object-cover" sizes="120px" />
               <div className="absolute top-1 right-1 flex gap-1">
                 {i > 0 && (
@@ -189,7 +189,7 @@ export default function FormFicha({
               </div>
             </div>
           ))}
-          <label className="aspect-square rounded-xl border-2 border-dashed border-border inline-flex flex-col items-center justify-center gap-1 text-muted hover:border-primary hover:text-primary cursor-pointer transition-colors">
+          <label className="aspect-square rounded-md border-2 border-dashed border-border inline-flex flex-col items-center justify-center gap-1 text-muted hover:border-primary hover:text-primary cursor-pointer transition-colors">
             {subiendo ? <Loader2 className="w-6 h-6 animate-spin" aria-hidden /> : <ImagePlus className="w-6 h-6" aria-hidden />}
             <span className="text-xs font-medium">{subiendo ? "Subiendo…" : "Agregar"}</span>
             <input type="file" accept="image/*" multiple className="hidden" onChange={(e) => subirFotos(e.target.files)} />
@@ -209,7 +209,7 @@ export default function FormFicha({
                 value={campos.horarios[d] ?? ""}
                 onChange={(e) => set("horarios", { ...campos.horarios, [d]: e.target.value })}
                 placeholder="9:00 – 18:00 (vacío = cerrado)"
-                className="flex-1 min-h-11 rounded-xl border border-border bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="flex-1 min-h-11 rounded-md border border-border bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           ))}
@@ -227,7 +227,7 @@ export default function FormFicha({
         type="button"
         onClick={guardar}
         disabled={guardando || subiendo}
-        className="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 bg-primary text-on-primary font-semibold px-8 rounded-xl hover:bg-primary-dark transition-colors disabled:opacity-60"
+        className="w-full sm:w-auto min-h-12 inline-flex items-center justify-center gap-2 bg-primary text-on-primary font-semibold px-8 rounded-md hover:bg-primary-dark transition-colors disabled:opacity-60"
       >
         {guardando && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
         Guardar cambios

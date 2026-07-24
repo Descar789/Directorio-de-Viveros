@@ -1,40 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --surface: #ffffff;
-  --surface-soft: #f7f6f4;
-  --foreground: #2a2019;
-  --strong: #3a322c;
-  --muted: #7a6f63;
-  --muted-soft: #a69a8c;
-  --border: #ede1cb;
-  --border-soft: #ede9e2;
-  --primary: #c1502e;
-  --primary-dark: #8b3419;
-  --plum: #4b2142;
-  --plum-soft: #f1e4ee;
+  --background: #fff8f6;
+  --surface: #fff8f6;
+  --surface-soft: #fff0ee;
+  --surface-high: #f5e5e1;
+  --foreground: #221a18;
+  --strong: #221a18;
+  --muted: #55433f;
+  --muted-soft: #88726e;
+  --border: #dbc1bc;
+  --border-soft: #ecdbd7;
+  --border-strong: #88726e;
+  --primary: #843728;
+  --primary-dark: #a24e3d;
+  --plum: #844f5e;
+  --plum-soft: #f5e1e6;
   --accent: #9c6a0b;
   --accent-soft: #fbe6dc;
+  --verificado-fg: #2e7d32;
+  --verificado-bg: #e8f3e8;
+  --verificado-border: #c3ddc4;
+  --precargado-fg: #9a6a15;
+  --precargado-bg: #fbf3e3;
+  --precargado-border: #ecdaba;
+  --destacado: #ffc107;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1e1712;
-    --surface: #29211a;
-    --surface-soft: #241d17;
-    --foreground: #f5ede3;
-    --strong: #e8ddd0;
-    --muted: #b5a794;
-    --muted-soft: #8f8272;
-    --border: #40352a;
-    --border-soft: #3a3026;
-    --primary: #d2603c;
-    --primary-dark: #b34a29;
-    --plum: #d9b3d0;
-    --plum-soft: #3d2338;
-    --accent: #a87411;
-    --accent-soft: #45301f;
+    --background: #1c1310;
+    --surface: #251a16;
+    --surface-soft: #2b1e19;
+    --surface-high: #362621;
+    --foreground: #f5e8e4;
+    --strong: #f5e8e4;
+    --muted: #cbb0a9;
+    --muted-soft: #a08881;
+    --border: #4a352e;
+    --border-soft: #3d2c26;
+    --border-strong: #6b5148;
+    --primary: #d9835f;
+    --primary-dark: #e79f7f;
+    --plum: #c98ea0;
+    --plum-soft: #3a262c;
+    --accent: #c99a4a;
+    --accent-soft: #3a2c17;
+    --verificado-fg: #7fc084;
+    --verificado-bg: #223122;
+    --verificado-border: #34472f;
+    --precargado-fg: #d3a250;
+    --precargado-bg: #362a17;
+    --precargado-border: #4a3a22;
+    --destacado: #ffd54f;
   }
 }
 
@@ -42,18 +60,27 @@
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-soft: var(--surface-soft);
+  --color-surface-high: var(--surface-high);
   --color-foreground: var(--foreground);
   --color-strong: var(--strong);
   --color-muted: var(--muted);
   --color-muted-soft: var(--muted-soft);
   --color-border: var(--border);
   --color-border-soft: var(--border-soft);
+  --color-border-strong: var(--border-strong);
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-plum: var(--plum);
   --color-plum-soft: var(--plum-soft);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-verificado-fg: var(--verificado-fg);
+  --color-verificado-bg: var(--verificado-bg);
+  --color-verificado-border: var(--verificado-border);
+  --color-precargado-fg: var(--precargado-fg);
+  --color-precargado-bg: var(--precargado-bg);
+  --color-precargado-border: var(--precargado-border);
+  --color-destacado: var(--destacado);
   --font-heading: var(--font-newsreader), Georgia, serif;
   --font-body: var(--font-work-sans), sans-serif;
 }
@@ -70,7 +97,7 @@ body {
 
 ::selection {
   background: var(--primary);
-  color: #fbf3e7;
+  color: var(--surface-soft);
 }
 
 .font-heading {

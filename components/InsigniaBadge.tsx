@@ -33,7 +33,7 @@ export function IconoInsignia({ icono, className }: { icono: string; className?:
 export default function InsigniaBadge({ insignia }: { insignia: Insignia }) {
   const Icono = ICONOS[insignia.icono] ?? Tag;
   return (
-    <span className="inline-flex items-center gap-1 rounded-full border border-border bg-surface px-2 py-0.5 text-xs text-muted">
+    <span className="inline-flex items-center gap-1 rounded-md bg-surface-high px-2.5 py-1 text-xs text-muted">
       <Icono className="w-3.5 h-3.5" aria-hidden />
       {insignia.nombre}
     </span>

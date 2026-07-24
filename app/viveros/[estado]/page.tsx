@@ -35,9 +35,9 @@ export default async function PaginaEstado({ params }: Props) {
         <p className="text-muted mt-2">Sé el primero en aparecer aquí.</p>
         <Link
           href="/registro"
-          className="inline-flex mt-6 min-h-12 items-center bg-primary text-on-primary font-semibold px-6 rounded-xl hover:bg-primary-dark transition-colors"
+          className="inline-flex mt-6 min-h-12 items-center gap-1.5 rounded-md bg-primary text-white font-semibold px-6 hover:bg-primary-dark transition-colors"
         >
-          Registra tu vivero gratis
+          Registra tu vivero gratis<span aria-hidden>→</span>
         </Link>
       </main>
     );
@@ -63,7 +63,7 @@ export default async function PaginaEstado({ params }: Props) {
           <Link
             key={m}
             href={`/viveros/${estadoSlug}/${slugify(m)}`}
-            className="min-h-11 inline-flex items-center gap-1.5 rounded-full border border-border-soft bg-surface-soft px-3.5 text-[13px] font-medium text-strong hover:border-primary hover:text-primary transition-colors"
+            className="min-h-11 inline-flex items-center gap-1.5 rounded-md bg-surface-high px-3.5 text-sm font-medium text-strong hover:text-primary transition-colors"
           >
             <MapPin className="w-3.5 h-3.5" aria-hidden /> {m}
           </Link>
@@ -76,7 +76,7 @@ export default async function PaginaEstado({ params }: Props) {
             <ViveroCard key={v.id} vivero={v} insignias={insignias[v.id] ?? []} variante="fila" />
           ))}
         </div>
-        <div className="h-[420px] lg:sticky lg:top-24 rounded-2xl overflow-hidden border border-border">
+        <div className="h-[420px] lg:sticky lg:top-24 rounded-lg overflow-hidden border border-border">
           <MapaViveros viveros={viveros} centro={centro} zoom={9} />
         </div>
       </div>

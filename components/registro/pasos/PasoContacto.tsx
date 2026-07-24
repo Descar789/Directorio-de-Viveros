@@ -27,7 +27,7 @@ export default function PasoContacto({
             value={datos.whatsapp}
             onChange={(e) => onCambio({ whatsapp: e.target.value })}
             placeholder="735 123 4567"
-            className="mt-1 w-full min-h-11 rounded-xl border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="mt-1 w-full min-h-11 rounded-md border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
         <div>
@@ -40,7 +40,7 @@ export default function PasoContacto({
             value={datos.telefono}
             onChange={(e) => onCambio({ telefono: e.target.value })}
             placeholder="735 123 4567"
-            className="mt-1 w-full min-h-11 rounded-xl border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="mt-1 w-full min-h-11 rounded-md border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function PasoContacto({
                   })
                 }
                 placeholder="9:00 – 18:00 (vacío = cerrado)"
-                className="flex-1 min-h-11 rounded-xl border border-border bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="flex-1 min-h-11 rounded-md border border-border bg-surface px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
           ))}

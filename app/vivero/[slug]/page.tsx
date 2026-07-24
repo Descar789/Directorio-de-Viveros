@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { MapPin, Star, Clock, Globe, Mail } from "lucide-react";
+import { MapPin, Clock, Globe, Mail } from "lucide-react";
 import GaleriaFotos from "@/components/GaleriaFotos";
 import BotonContacto from "@/components/BotonContacto";
 import MapaViveros from "@/components/MapaViverosLazy";
 import InsigniaBadge from "@/components/InsigniaBadge";
+import EstatusBadge from "@/components/EstatusBadge";
 import AdSlot from "@/components/AdSlot";
 import { crearClientePublico } from "@/lib/supabase/publico";
-import { esDestacado, type Vivero, type Insignia } from "@/lib/tipos";
+import { type Vivero, type Insignia } from "@/lib/tipos";
 
 export const revalidate = 3600;
 
@@ -63,7 +64,6 @@ export default async function PaginaVivero({ params }: Props) {
     .map((f) => f.insignias as unknown as Insignia)
     .filter(Boolean);
 
-  const destacado = esDestacado(vivero);
   const horarios = DIAS.filter((d) => vivero.horarios[d]);
 
   const jsonLd = {
@@ -108,13 +108,13 @@ export default async function PaginaVivero({ params }: Props) {
       </nav>
 
       {vivero.estatus === "pre-cargado" && (
-        <div className="bg-accent-soft border border-border rounded-2xl px-4 py-3 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-medium">¿Este vivero es tuyo? Reclámalo gratis y adminístralo.</p>
+        <div className="rounded-lg bg-precargado-bg border border-precargado-border px-4 py-3 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="font-medium text-precargado-fg">¿Este vivero es tuyo? Reclámalo gratis y adminístralo.</p>
           <Link
             href={`/registro?reclamar=${vivero.slug}`}
-            className="min-h-11 inline-flex items-center bg-primary text-on-primary font-semibold px-4 rounded-[10px] shrink-0"
+            className="min-h-11 inline-flex items-center gap-1.5 rounded-md bg-precargado-fg text-white font-semibold px-4 shrink-0 hover:opacity-90 transition-opacity"
           >
-            Reclamar ficha
+            Reclamar ficha<span aria-hidden>→</span>
           </Link>
         </div>
       )}
@@ -125,16 +125,7 @@ export default async function PaginaVivero({ params }: Props) {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <h1 className="font-heading text-3xl lg:text-[34px] font-medium">{vivero.nombre}</h1>
-            {vivero.estatus === "verificado" && (
-              <span className="bg-plum-soft text-plum text-[12.5px] font-semibold px-2.5 py-1 rounded-lg inline-flex items-center gap-1">
-                Verificado
-              </span>
-            )}
-            {destacado && (
-              <span className="bg-surface border border-border text-[11px] font-bold uppercase tracking-[0.04em] px-2.5 py-1 rounded-full inline-flex items-center gap-1">
-                <Star className="w-3 h-3 text-primary" aria-hidden /> Destacado
-              </span>
-            )}
+            <EstatusBadge vivero={vivero} />
           </div>
 
           <p className="text-muted mt-2.5 inline-flex items-center gap-1">
@@ -194,7 +185,7 @@ export default async function PaginaVivero({ params }: Props) {
           )}
 
           <section className="mt-8" aria-label="Ubicación en mapa">
-            <div className="h-64 rounded-2xl overflow-hidden border border-border">
+            <div className="h-64 rounded-lg overflow-hidden border border-border">
               <MapaViveros viveros={[vivero]} centro={[vivero.lat, vivero.lng]} zoom={15} />
             </div>
           </section>
@@ -203,7 +194,7 @@ export default async function PaginaVivero({ params }: Props) {
         <aside className="lg:sticky lg:top-20 self-start space-y-4">
           <BotonContacto vivero={vivero} />
           {(vivero.sitio_web || vivero.email) && (
-            <div className="bg-surface border border-border rounded-2xl p-4 space-y-2 text-sm">
+            <div className="bg-surface border border-border rounded-lg p-4 space-y-2 text-sm">
               {vivero.sitio_web && (
                 <a href={vivero.sitio_web} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 min-h-11 hover:text-primary">
                   <Globe className="w-4 h-4 text-primary" aria-hidden /> Sitio web

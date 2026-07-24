@@ -40,7 +40,7 @@ export default function TablaViveros({ viveros }: { viveros: Vivero[] }) {
         value={filtro}
         onChange={(e) => setFiltro(e.target.value)}
         placeholder="Buscar por nombre, municipio o estado…"
-        className="w-full sm:max-w-sm min-h-11 rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-primary"
+        className="w-full sm:max-w-sm min-h-11 rounded-md border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-primary"
       />
 
       {mensaje && (
@@ -77,14 +77,14 @@ export default function TablaViveros({ viveros }: { viveros: Vivero[] }) {
                         type="button"
                         onClick={() => borrar(v.id)}
                         disabled={pendiente}
-                        className="min-h-11 px-3 rounded-xl bg-destructive text-on-primary font-semibold disabled:opacity-60"
+                        className="min-h-11 px-3 rounded-md bg-destructive text-on-primary font-semibold disabled:opacity-60"
                       >
                         {pendiente ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden /> : "Sí, borrar"}
                       </button>
                       <button
                         type="button"
                         onClick={() => setConfirmando(null)}
-                        className="min-h-11 px-3 rounded-xl border border-border font-semibold"
+                        className="min-h-11 px-3 rounded-md border border-border font-semibold"
                       >
                         No
                       </button>
@@ -94,7 +94,7 @@ export default function TablaViveros({ viveros }: { viveros: Vivero[] }) {
                       <Link
                         href={`/vivero/${v.slug}`}
                         aria-label={`Ver ficha de ${v.nombre}`}
-                        className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-xl hover:text-primary"
+                        className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-md hover:text-primary"
                       >
                         <ExternalLink className="w-4 h-4" aria-hidden />
                       </Link>
@@ -102,7 +102,7 @@ export default function TablaViveros({ viveros }: { viveros: Vivero[] }) {
                         type="button"
                         onClick={() => setConfirmando(v.id)}
                         aria-label={`Borrar ${v.nombre}`}
-                        className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-xl hover:text-destructive"
+                        className="min-h-11 min-w-11 inline-flex items-center justify-center rounded-md hover:text-destructive"
                       >
                         <Trash2 className="w-4 h-4" aria-hidden />
                       </button>

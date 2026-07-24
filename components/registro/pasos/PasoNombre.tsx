@@ -22,7 +22,7 @@ export default function PasoNombre({
         value={datos.nombre}
         onChange={(e) => onCambio({ nombre: e.target.value })}
         placeholder="Ej. Vivero Las Palmas"
-        className="mt-6 w-full min-h-12 rounded-xl border border-border bg-surface px-4 text-lg focus:outline-none focus:ring-2 focus:ring-primary"
+        className="mt-6 w-full min-h-12 rounded-md border border-border bg-surface px-4 text-lg focus:outline-none focus:ring-2 focus:ring-primary"
         autoFocus
       />
       <div className="mt-6">
@@ -35,7 +35,7 @@ export default function PasoNombre({
           onChange={(e) => onCambio({ descripcion: e.target.value })}
           placeholder="Cuéntanos qué vendes, desde cuándo, qué te hace especial…"
           rows={3}
-          className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="mt-2 w-full rounded-md border border-border bg-surface px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
     </div>

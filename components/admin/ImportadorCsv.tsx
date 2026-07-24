@@ -35,7 +35,7 @@ export default function ImportadorCsv() {
     <div>
       <label
         htmlFor="archivo-csv"
-        className="inline-flex min-h-11 items-center gap-2 bg-primary text-on-primary font-semibold px-4 rounded-xl cursor-pointer"
+        className="inline-flex min-h-11 items-center gap-2 bg-primary text-on-primary font-semibold px-4 rounded-md cursor-pointer"
       >
         <Upload className="w-4 h-4" aria-hidden /> Elegir archivo CSV
       </label>
@@ -51,7 +51,7 @@ export default function ImportadorCsv() {
       </p>
 
       {errores.length > 0 && (
-        <div role="alert" className="mt-4 bg-destructive/10 border border-destructive rounded-2xl p-4">
+        <div role="alert" className="mt-4 bg-destructive/10 border border-destructive rounded-lg p-4">
           <p className="font-semibold text-destructive">
             {errores.length} {errores.length === 1 ? "fila con error" : "filas con error"} (no se importarán):
           </p>
@@ -68,7 +68,7 @@ export default function ImportadorCsv() {
       {filas.length > 0 && (
         <div className="mt-4">
           <p className="font-semibold">{filas.length} filas listas para importar:</p>
-          <div className="overflow-x-auto mt-2 border border-border rounded-2xl">
+          <div className="overflow-x-auto mt-2 border border-border rounded-lg">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left text-muted border-b border-border">
@@ -97,7 +97,7 @@ export default function ImportadorCsv() {
             type="button"
             onClick={importar}
             disabled={pendiente}
-            className="mt-4 min-h-12 inline-flex items-center gap-2 bg-accent text-on-primary font-semibold px-6 rounded-xl disabled:opacity-60"
+            className="mt-4 min-h-12 inline-flex items-center gap-2 bg-accent text-on-primary font-semibold px-6 rounded-md disabled:opacity-60"
           >
             {pendiente && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
             Importar {filas.length} viveros

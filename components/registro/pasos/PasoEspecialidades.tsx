@@ -45,7 +45,7 @@ export default function PasoEspecialidades({
               type="button"
               aria-pressed={activa}
               onClick={() => alternar(i.clave)}
-              className={`min-h-11 inline-flex items-center rounded-xl px-1 transition-shadow ${
+              className={`min-h-11 inline-flex items-center rounded-md px-1 transition-shadow ${
                 activa ? "ring-2 ring-primary rounded-full" : "hover:opacity-80"
               }`}
             >

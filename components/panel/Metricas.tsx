@@ -15,7 +15,7 @@ export default function Metricas({ vivero }: { vivero: Vivero }) {
       </h2>
       <div className="grid sm:grid-cols-3 gap-4 mt-3">
         {TARJETAS.map(({ clave, etiqueta, Icono }) => (
-          <div key={clave} className="bg-surface border border-border rounded-2xl p-5">
+          <div key={clave} className="bg-surface border border-border rounded-lg p-5">
             <Icono className="w-5 h-5 text-primary" aria-hidden />
             <p className="font-heading text-3xl font-medium mt-2">{vivero[clave]}</p>
             <p className="text-sm text-muted">{etiqueta}</p>

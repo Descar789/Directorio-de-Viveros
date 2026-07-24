@@ -42,23 +42,23 @@ export default function Buscador() {
 
   return (
     <div>
-      <form
-        onSubmit={buscar}
-        className="bg-surface border border-border rounded-2xl p-2 flex flex-col sm:flex-row gap-2 shadow-[0_1px_2px_rgba(42,32,25,0.04)]"
-      >
-        <label className="sr-only" htmlFor="buscador-q">
-          ¿Qué buscas?
-        </label>
-        <input
-          id="buscador-q"
-          type="text"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="¿Qué buscas? Ej. bugambilia"
-          className="flex-1 min-h-12 px-3.5 bg-transparent text-[15px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl"
-        />
-        <div className="hidden sm:block w-px self-stretch bg-border" aria-hidden />
-        <div className="flex-1 flex items-center gap-2 min-w-0">
+      <div className="flex flex-col sm:flex-row gap-2">
+        <form
+          onSubmit={buscar}
+          className="flex-1 bg-surface border border-border rounded-lg p-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-1 shadow-sm overflow-hidden"
+        >
+          <label className="sr-only" htmlFor="buscador-q">
+            ¿Qué buscas?
+          </label>
+          <input
+            id="buscador-q"
+            type="text"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="¿Qué buscas? Ej. bugambilia"
+            className="flex-1 min-h-11 px-3.5 bg-transparent text-[15px] focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+          <div className="hidden sm:block w-px self-stretch bg-border" aria-hidden />
           <label className="sr-only" htmlFor="buscador-donde">
             ¿Dónde?
           </label>
@@ -68,25 +68,25 @@ export default function Buscador() {
             value={donde}
             onChange={(e) => setDonde(e.target.value)}
             placeholder="Ciudad o estado"
-            className="flex-1 min-w-0 min-h-12 px-3.5 bg-transparent text-[15px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl"
+            className="flex-1 min-w-0 min-h-11 px-3.5 bg-transparent text-[15px] focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <button
-            type="button"
-            onClick={cercaDeMi}
-            disabled={ubicando}
-            className="min-h-11 shrink-0 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary pr-2 disabled:opacity-60 whitespace-nowrap"
+            type="submit"
+            className="min-h-11 shrink-0 inline-flex items-center justify-center gap-1.5 rounded-md bg-primary px-6 text-[14.5px] font-semibold text-white hover:bg-primary-dark transition-colors"
           >
-            <LocateFixed className="w-4 h-4" aria-hidden />
-            {ubicando ? "Ubicando…" : "Cerca de mí"}
+            Buscar
           </button>
-        </div>
+        </form>
         <button
-          type="submit"
-          className="min-h-12 inline-flex items-center justify-center bg-primary text-on-primary font-semibold text-[15px] px-6 rounded-[10px] hover:bg-primary-dark transition-colors"
+          type="button"
+          onClick={cercaDeMi}
+          disabled={ubicando}
+          className="shrink-0 min-h-11 inline-flex items-center justify-center gap-1.5 rounded-md border border-border text-strong text-[14.5px] font-semibold px-5 disabled:opacity-60 whitespace-nowrap hover:border-primary hover:text-primary transition-colors"
         >
-          Buscar
+          <LocateFixed className="w-4 h-4" aria-hidden />
+          {ubicando ? "Ubicando…" : "Cerca de mí"}
         </button>
-      </form>
+      </div>
       {aviso && (
         <p role="alert" className="mt-2 text-sm text-destructive">
           {aviso}

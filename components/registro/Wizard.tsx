@@ -176,7 +176,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
         </p>
         <Link
           href="/"
-          className="inline-flex mt-8 min-h-11 items-center bg-primary text-on-primary font-semibold px-6 rounded-xl"
+          className="inline-flex mt-8 min-h-11 items-center bg-primary text-on-primary font-semibold px-6 rounded-md"
         >
           Volver al inicio
         </Link>
@@ -202,7 +202,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
               track("registro_iniciado", { modo: "nuevo" });
               setModo("nuevo");
             }}
-            className="bg-surface border border-border rounded-2xl p-6 text-left hover:border-primary transition-colors min-h-11"
+            className="bg-surface border border-border rounded-lg p-6 text-left hover:border-primary transition-colors min-h-11"
           >
             <Store className="w-8 h-8 text-primary" aria-hidden />
             <p className="font-heading font-semibold text-lg mt-3">Registrar mi vivero</p>
@@ -216,7 +216,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
               track("registro_iniciado", { modo: "reclamo" });
               setModo("reclamo");
             }}
-            className="bg-surface border border-border rounded-2xl p-6 text-left hover:border-primary transition-colors min-h-11"
+            className="bg-surface border border-border rounded-lg p-6 text-left hover:border-primary transition-colors min-h-11"
           >
             <Search className="w-8 h-8 text-primary" aria-hidden />
             <p className="font-heading font-semibold text-lg mt-3">
@@ -258,13 +258,13 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
                 onKeyDown={(e) => e.key === "Enter" && buscarPrecargados()}
                 placeholder="Ej. Vivero Las Palmas, Cuautla"
                 aria-label="Buscar ficha de tu vivero"
-                className="flex-1 min-h-11 rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="flex-1 min-h-11 rounded-md border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <button
                 type="button"
                 onClick={buscarPrecargados}
                 disabled={buscando}
-                className="min-h-11 inline-flex items-center gap-2 bg-primary text-on-primary font-semibold px-4 rounded-xl disabled:opacity-60"
+                className="min-h-11 inline-flex items-center gap-2 bg-primary text-on-primary font-semibold px-4 rounded-md disabled:opacity-60"
               >
                 {buscando ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden /> : <Search className="w-4 h-4" aria-hidden />}
                 Buscar
@@ -276,7 +276,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
                   <button
                     type="button"
                     onClick={() => setViveroReclamado(v)}
-                    className="w-full text-left bg-surface border border-border rounded-xl px-4 py-3 hover:border-primary transition-colors"
+                    className="w-full text-left bg-surface border border-border rounded-md px-4 py-3 hover:border-primary transition-colors"
                   >
                     <p className="font-semibold">{v.nombre}</p>
                     <p className="text-sm text-muted">
@@ -289,7 +289,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
           </>
         ) : (
           <div className="mt-4">
-            <div className="bg-surface border border-primary rounded-2xl px-4 py-3">
+            <div className="bg-surface border border-primary rounded-lg px-4 py-3">
               <p className="font-semibold">{viveroReclamado.nombre}</p>
               <p className="text-sm text-muted">
                 {viveroReclamado.municipio}, {viveroReclamado.estado}
@@ -304,7 +304,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
               accept="image/*"
               onChange={(e) => subirEvidencia(e.target.files)}
               aria-label="Foto de evidencia"
-              className="mt-3 block w-full text-sm file:min-h-11 file:mr-3 file:rounded-xl file:border-0 file:bg-primary file:text-on-primary file:px-4 file:font-semibold"
+              className="mt-3 block w-full text-sm file:min-h-11 file:mr-3 file:rounded-md file:border-0 file:bg-primary file:text-on-primary file:px-4 file:font-semibold"
             />
             {subiendoEvidencia && <p className="text-sm text-muted mt-1">Subiendo…</p>}
             {evidenciaUrl && <p className="text-sm text-primary mt-1">Foto subida ✓</p>}
@@ -314,7 +314,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
               placeholder="Ej. El local está junto a la gasolinera, atendemos desde 2010…"
               rows={3}
               aria-label="Evidencia en texto"
-              className="mt-3 w-full rounded-xl border border-border bg-surface px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="mt-3 w-full rounded-md border border-border bg-surface px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             {error && (
               <p ref={refError} role="alert" tabIndex={-1} className="mt-3 text-sm text-destructive">
@@ -325,7 +325,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
               type="button"
               onClick={enviar}
               disabled={enviando || (!evidenciaUrl && !evidenciaTexto.trim())}
-              className="mt-6 w-full min-h-12 inline-flex items-center justify-center gap-2 bg-accent text-on-primary font-semibold rounded-xl disabled:opacity-60"
+              className="mt-6 w-full min-h-12 inline-flex items-center justify-center gap-2 bg-accent text-on-primary font-semibold rounded-md disabled:opacity-60"
             >
               {enviando && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
               Enviar reclamo
@@ -379,7 +379,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
         ))}
       </ol>
 
-      <div className="mt-8 bg-surface border border-border rounded-[20px] p-6 sm:p-9">
+      <div className="mt-8 bg-surface border border-border rounded-xl p-6 sm:p-9">
         {paso === 1 && <PasoNombre datos={datos} onCambio={cambiar} />}
         {paso === 2 && <PasoUbicacion datos={datos} onCambio={cambiar} />}
         {paso === 3 && <PasoContacto datos={datos} onCambio={cambiar} />}
@@ -397,7 +397,7 @@ export default function Wizard({ slugReclamo }: { slugReclamo?: string }) {
           type="button"
           onClick={paso < TOTAL_PASOS ? continuar : enviar}
           disabled={enviando}
-          className={`mt-8 w-full min-h-12 inline-flex items-center justify-center gap-2 text-on-primary font-semibold rounded-[11px] transition-colors disabled:opacity-60 ${
+          className={`mt-8 w-full min-h-12 inline-flex items-center justify-center gap-2 text-on-primary font-semibold rounded-md transition-colors disabled:opacity-60 ${
             paso < TOTAL_PASOS ? "bg-primary hover:bg-primary-dark" : "bg-accent hover:opacity-90"
           }`}
         >

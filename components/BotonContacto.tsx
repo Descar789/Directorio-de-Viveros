@@ -30,8 +30,8 @@ export default function BotonContacto({ vivero }: { vivero: Vivero }) {
   const comoLlegar = `https://maps.google.com/?q=${vivero.lat},${vivero.lng}`;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 bg-surface border-t border-border p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex gap-2 lg:static lg:flex-col lg:rounded-[18px] lg:border lg:p-6">
-      <p className="hidden lg:block text-[12.5px] font-bold uppercase tracking-[0.08em] text-muted-soft mb-1">
+    <div className="fixed bottom-0 inset-x-0 z-40 bg-surface border-t border-border p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex gap-2 lg:static lg:flex-col lg:rounded-xl lg:border lg:p-6">
+      <p className="hidden lg:block text-[11px] font-semibold uppercase tracking-[0.04em] text-muted-soft mb-2">
         Contacto
       </p>
       {vivero.whatsapp && (
@@ -43,15 +43,15 @@ export default function BotonContacto({ vivero }: { vivero: Vivero }) {
             mandarMetrica(vivero.id, "clics_whatsapp");
             track("clic_whatsapp", { vivero: vivero.slug });
           }}
-          className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-dark transition-colors"
+          className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 rounded-md bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
         >
-          <MessageCircle className="w-5 h-5" aria-hidden /> WhatsApp
+          <MessageCircle className="w-5 h-5" aria-hidden /> Escribir por WhatsApp
         </a>
       )}
       {vivero.telefono && (
         <a
           href={`tel:${vivero.telefono}`}
-          className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 border border-primary text-primary rounded-xl font-semibold hover:bg-primary/10 transition-colors"
+          className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 rounded-md border border-border text-strong font-semibold hover:border-primary hover:text-primary transition-colors"
         >
           <Phone className="w-5 h-5" aria-hidden /> Llamar
         </a>
@@ -61,7 +61,7 @@ export default function BotonContacto({ vivero }: { vivero: Vivero }) {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => mandarMetrica(vivero.id, "clics_como_llegar")}
-        className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 border border-border rounded-xl font-semibold hover:border-primary hover:text-primary transition-colors"
+        className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 rounded-md border border-border text-strong font-semibold hover:border-primary hover:text-primary transition-colors"
       >
         <Navigation className="w-5 h-5" aria-hidden /> Cómo llegar
       </a>

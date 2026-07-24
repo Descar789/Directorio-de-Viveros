@@ -39,14 +39,14 @@ export default function AvisoCookies() {
           <button
             type="button"
             onClick={() => elegir("esenciales")}
-            className="min-h-11 px-4 rounded-xl border border-border font-semibold text-sm hover:border-primary"
+            className="min-h-11 px-4 rounded-md border border-border font-semibold text-sm hover:border-primary"
           >
             Solo esenciales
           </button>
           <button
             type="button"
             onClick={() => elegir("aceptar")}
-            className="min-h-11 px-4 rounded-xl bg-primary text-on-primary font-semibold text-sm hover:bg-primary-dark"
+            className="min-h-11 px-4 rounded-md bg-primary text-on-primary font-semibold text-sm hover:bg-primary-dark"
           >
             Aceptar
           </button>

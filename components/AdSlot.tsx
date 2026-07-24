@@ -71,7 +71,7 @@ export default function AdSlot({
         />
       ) : (
         <div
-          className="h-full w-full flex items-center justify-center text-xs text-muted border border-dashed border-border rounded-2xl"
+          className="h-full w-full flex items-center justify-center text-xs text-muted-soft uppercase tracking-[0.06em] border border-dashed border-border-strong"
           style={{ minHeight: minAlto }}
           aria-hidden
         >

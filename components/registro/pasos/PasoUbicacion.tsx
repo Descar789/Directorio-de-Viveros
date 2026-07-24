@@ -42,7 +42,7 @@ export default function PasoUbicacion({
             id="estado"
             value={datos.estado}
             onChange={(e) => onCambio({ estado: e.target.value })}
-            className="mt-1 w-full min-h-11 rounded-xl border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="mt-1 w-full min-h-11 rounded-md border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
           >
             <option value="">Elige tu estado</option>
             {ESTADOS.map((e) => (
@@ -62,7 +62,7 @@ export default function PasoUbicacion({
             value={datos.municipio}
             onChange={(e) => onCambio({ municipio: e.target.value })}
             placeholder="Ej. Cuautla"
-            className="mt-1 w-full min-h-11 rounded-xl border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="mt-1 w-full min-h-11 rounded-md border border-border bg-surface px-3 focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
       </div>
